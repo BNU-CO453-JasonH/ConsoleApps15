@@ -1,11 +1,11 @@
 # C# Console Applications App01 to App05
 | Author | Details |
 | ---- | ---- |
-**Name**: | Student Name  |
-**Student ID**: | 12345678 |
+**Name**: | Jason Huggins  |
+**Student ID**: | 22021121 |
 **Course:** | Computing |
-**Module**: | CO453     |
-**Started**: | January 2021 |    
+**Module**: | CO453 - Application Programming |
+**Started**: | February 2021 |    
 
 1. App01: Distance Converter
 2. App02: BMI Calculator
