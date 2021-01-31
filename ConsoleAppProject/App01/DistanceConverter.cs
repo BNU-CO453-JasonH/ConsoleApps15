@@ -16,7 +16,9 @@
         /// </summary>
         public void Run()
         {
-
+            InputMiles();
+            CalculateFeet();
+            OutputFeet();
         }
 
         /// <summary>
@@ -39,7 +41,7 @@
         /// <summary>
         /// Outputs the conversion result (the distance in feet) to the user.
         /// </summary>
-        private void OutputMiles()
+        private void OutputFeet()
         {
 
         }
