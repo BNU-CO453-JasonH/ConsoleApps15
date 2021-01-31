@@ -1,4 +1,6 @@
-﻿namespace ConsoleAppProject.App01
+﻿using System;
+
+namespace ConsoleAppProject.App01
 {
     /// <summary>
     /// This App converts a user-inputted distance in miles into its distance in feet, displaying the result to the user afterwards.
@@ -25,8 +27,10 @@
         /// Prompt the user to input the distance in miles (as a double number).
         /// </summary>
         private void InputMiles()
-        { 
-
+        {
+            Console.Write("Please enter the number of miles = ");
+            string value = Console.ReadLine();
+            miles = Convert.ToDouble(value);
         }
 
         /// <summary>
