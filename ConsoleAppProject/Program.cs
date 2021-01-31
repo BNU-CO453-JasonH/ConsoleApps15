@@ -1,4 +1,5 @@
 ﻿using System;
+using ConsoleAppProject.App01;
 
 namespace ConsoleAppProject
 {
@@ -18,6 +19,10 @@ namespace ConsoleAppProject
             
             Console.WriteLine("BNU CO453 Applications Programming 2020-2021!");
             Console.WriteLine();
+
+            // App01 - Distance Converter
+            DistanceConverter converter = new DistanceConverter();
+            converter.Run();
         }
     }
 }
