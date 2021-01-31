@@ -30,12 +30,10 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void OutputHeading()
         {
-            Console.WriteLine();
-            Console.WriteLine("------------------------------");
+            Console.WriteLine("\n------------------------------");
             Console.WriteLine("   Miles to Feet Conversion   ");
             Console.WriteLine("       By Jason Huggins       ");
-            Console.WriteLine("------------------------------");
-            Console.WriteLine();
+            Console.WriteLine("------------------------------\n");
         }
 
         /// <summary>
