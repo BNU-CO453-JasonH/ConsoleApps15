@@ -89,8 +89,8 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine(miles + " mile(s) = " + feet + " feet.");
 
-            Console.WriteLine("Please any key to return to the menu.");
-            Console.Read();
+            Console.WriteLine("Please ENTER to return to the menu.");
+            Console.ReadLine();
             SelectChoice();
         }
 
@@ -108,8 +108,8 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine(feet + " feet = " + miles + " mile(s).");
 
-            Console.WriteLine("Please any key to return to the menu.");
-            Console.Read();
+            Console.WriteLine("Please ENTER to return to the menu.");
+            Console.ReadLine();
             SelectChoice();
         }
 
@@ -127,8 +127,8 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine(miles + " mile(s) = " + metres + " metre(s).");
 
-            Console.WriteLine("Please any key to return to the menu.");
-            Console.Read();
+            Console.WriteLine("Please ENTER to return to the menu.");
+            Console.ReadLine();
             SelectChoice();
         }
 
@@ -146,8 +146,8 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine(metres + " metre(s) = " + miles + " mile(s).");
 
-            Console.WriteLine("Please any key to return to the menu.");
-            Console.Read();
+            Console.WriteLine("Please ENTER to return to the menu.");
+            Console.ReadLine();
             SelectChoice();
         }
 
@@ -165,8 +165,8 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine(metres + " metre(s) = " + feet + " feet.");
 
-            Console.WriteLine("Please any key to return to the menu.");
-            Console.Read();
+            Console.WriteLine("Please ENTER to return to the menu.");
+            Console.ReadLine();
             SelectChoice();
         }
 
@@ -184,8 +184,8 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine(feet + " feet = " + metres + " metre(s).");
 
-            Console.WriteLine("Please any key to return to the menu.");
-            Console.Read();
+            Console.WriteLine("Please ENTER to return to the menu.");
+            Console.ReadLine();
             SelectChoice();
         }
     }
