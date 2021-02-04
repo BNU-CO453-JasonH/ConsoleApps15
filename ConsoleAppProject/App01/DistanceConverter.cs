@@ -3,7 +3,7 @@
 namespace ConsoleAppProject.App01
 {
     /// <summary>
-    /// This App converts a user-inputted distance in either miles, feet or metres (selected by the user at the start) ,
+    /// This App converts a user-inputted distance in either miles, feet or metres (selected by the user at the start),
     /// converting it into its equivalent distance in another unit (e.g. , displaying the result to the user afterwards.
     /// </summary>
     /// <author>
@@ -60,6 +60,7 @@ namespace ConsoleAppProject.App01
             }
             else 
             {
+                // TODO: Needs fixing so it doesn't end the program immediately after an invalid input.
                 Console.WriteLine("Invalid choice. Please try again.");
             }
         }
