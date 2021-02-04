@@ -17,9 +17,9 @@ namespace ConsoleAppProject.App01
         public const double METRES_IN_MILES = 1609.34;
 
         // Attributes
-        private double miles;
-        private double feet;
-        private double metres;
+        public double Miles { get; set; }
+        public double Feet { get; set; }
+        public double Metres { get; set; }
 
         /// <summary>
         /// Asks the user to choose which distance units they want to convert to/from.
@@ -84,11 +84,11 @@ namespace ConsoleAppProject.App01
         {
             Console.Write("\nPlease enter the number of miles = ");
             string value = Console.ReadLine();
-            miles = Convert.ToDouble(value);
+            Miles = Convert.ToDouble(value);
             
-            feet = miles * FEET_IN_MILES;
+            Feet = Miles * FEET_IN_MILES;
 
-            Console.WriteLine(miles + " mile(s) = " + feet + " feet.");
+            Console.WriteLine(Miles + " mile(s) = " + Feet + " feet.");
 
             Console.WriteLine("Please ENTER to return to the menu.");
             Console.ReadLine();
@@ -103,11 +103,11 @@ namespace ConsoleAppProject.App01
         {
             Console.Write("\nPlease enter the number of feet = ");
             string value = Console.ReadLine();
-            feet = Convert.ToDouble(value);
+            Feet = Convert.ToDouble(value);
 
-            miles = feet / FEET_IN_MILES;
+            Miles = Feet / FEET_IN_MILES;
 
-            Console.WriteLine(feet + " feet = " + miles + " mile(s).");
+            Console.WriteLine(Feet + " feet = " + Miles + " mile(s).");
 
             Console.WriteLine("Please ENTER to return to the menu.");
             Console.ReadLine();
@@ -122,11 +122,11 @@ namespace ConsoleAppProject.App01
         {
             Console.Write("\nPlease enter the number of miles = ");
             string value = Console.ReadLine();
-            miles = Convert.ToDouble(value);
+            Miles = Convert.ToDouble(value);
             
-            metres = miles * METRES_IN_MILES;
+            Metres = Miles * METRES_IN_MILES;
 
-            Console.WriteLine(miles + " mile(s) = " + metres + " metre(s).");
+            Console.WriteLine(Miles + " mile(s) = " + Metres + " metre(s).");
 
             Console.WriteLine("Please ENTER to return to the menu.");
             Console.ReadLine();
@@ -141,11 +141,11 @@ namespace ConsoleAppProject.App01
         {
             Console.Write("\nPlease enter the number of metres = ");
             string value = Console.ReadLine();
-            metres = Convert.ToDouble(value);
+            Metres = Convert.ToDouble(value);
 
-            miles = metres / METRES_IN_MILES;
+            Miles = Metres / METRES_IN_MILES;
 
-            Console.WriteLine(metres + " metre(s) = " + miles + " mile(s).");
+            Console.WriteLine(Metres + " metre(s) = " + Miles + " mile(s).");
 
             Console.WriteLine("Please ENTER to return to the menu.");
             Console.ReadLine();
@@ -160,11 +160,11 @@ namespace ConsoleAppProject.App01
         {
             Console.Write("\nPlease enter the number of metres = ");
             string value = Console.ReadLine();
-            metres = Convert.ToDouble(value);
+            Metres = Convert.ToDouble(value);
 
-            feet = metres * FEET_IN_METRES;
+            Feet = Metres * FEET_IN_METRES;
 
-            Console.WriteLine(metres + " metre(s) = " + feet + " feet.");
+            Console.WriteLine(Metres + " metre(s) = " + Feet + " feet.");
 
             Console.WriteLine("Please ENTER to return to the menu.");
             Console.ReadLine();
@@ -179,11 +179,11 @@ namespace ConsoleAppProject.App01
         {
             Console.Write("\nPlease enter the number of feet = ");
             string value = Console.ReadLine();
-            feet = Convert.ToDouble(value);
+            Feet = Convert.ToDouble(value);
 
-            metres = feet / FEET_IN_METRES;
+            Metres = Feet / FEET_IN_METRES;
 
-            Console.WriteLine(feet + " feet = " + metres + " metre(s).");
+            Console.WriteLine(Feet + " feet = " + Metres + " metre(s).");
 
             Console.WriteLine("Please ENTER to return to the menu.");
             Console.ReadLine();
