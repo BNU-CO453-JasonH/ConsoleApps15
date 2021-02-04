@@ -10,5 +10,17 @@
         Metres,
         Kilometres,
         Miles
+
+       /* private string name;
+        
+        public DistanceUnits(string name) 
+        {
+            this.name = name;
+        }
+
+        public string GetName() 
+        {
+            return name;
+        } */
     }
 }
