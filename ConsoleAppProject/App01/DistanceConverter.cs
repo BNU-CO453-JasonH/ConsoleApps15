@@ -7,7 +7,7 @@ namespace ConsoleAppProject.App01
     /// converting it into its equivalent distance in another unit (e.g. , displaying the result to the user afterwards.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 04/02/2021)
+    /// Jason Huggins (modified 07/02/2021)
     /// </author>
     public class DistanceConverter
     {
@@ -24,7 +24,7 @@ namespace ConsoleAppProject.App01
         /// <summary>
         /// Asks the user to choose which distance units they want to convert to/from.
         /// </summary>
-        public void SelectChoice() 
+        public void SelectChoice()
         {
             OutputHeading();
 
@@ -34,7 +34,7 @@ namespace ConsoleAppProject.App01
             Console.Write("\nPlease enter the unit you'd like to convert to ('miles', 'feet' or 'metres') > ");
             string destinationUnit = Console.ReadLine();
 
-            if (sourceUnit == "miles" && destinationUnit == "feet") 
+            if (sourceUnit == "miles" && destinationUnit == "feet")
             {
                 ConvertMilesToFeet();
             }
@@ -42,23 +42,23 @@ namespace ConsoleAppProject.App01
             {
                 ConvertFeetToMiles();
             }
-            else if (sourceUnit == "miles" && destinationUnit == "metres") 
+            else if (sourceUnit == "miles" && destinationUnit == "metres")
             {
                 ConvertMilesToMetres();
             }
-            else if (sourceUnit == "metres" && destinationUnit == "miles") 
+            else if (sourceUnit == "metres" && destinationUnit == "miles")
             {
                 ConvertMetresToMiles();
             }
-            else if (sourceUnit == "metres" && destinationUnit == "feet") 
+            else if (sourceUnit == "metres" && destinationUnit == "feet")
             {
                 ConvertMetresToFeet();
             }
-            else if (sourceUnit == "feet" && destinationUnit == "metres") 
+            else if (sourceUnit == "feet" && destinationUnit == "metres")
             {
                 ConvertFeetToMetres();
             }
-            else 
+            else
             {
                 // TODO: Needs fixing so it doesn't end the program immediately after an invalid input.
                 Console.WriteLine("Invalid choice. Please try again.");
@@ -77,6 +77,32 @@ namespace ConsoleAppProject.App01
         }
 
         /// <summary>
+        /// Gives the user the option to either exit the application after getting a conversion result or return
+        /// to the menu to convert another distance.
+        /// </summary>
+        private void ExitDecision()
+        {
+            Console.Write("\nWould you like to exit? Selecting 'n' will return you to the menu (y/n) > ");
+
+            string choice = Console.ReadLine();
+
+            if (choice == "y")
+            {
+                Console.WriteLine("Thank you for using this calculator. Goodbye for now!");
+                Environment.Exit(0);
+            }
+            else if (choice == "n")
+            {
+                SelectChoice();
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please try again.");
+                ExitDecision();
+            }
+        }
+
+        /// <summary>
         /// Asks the user to input a distance in miles, which is then converted into feet and the result is 
         /// displayed on-screen.
         /// </summary>
@@ -85,14 +111,12 @@ namespace ConsoleAppProject.App01
             Console.Write("\nPlease enter the number of miles = ");
             string value = Console.ReadLine();
             Miles = Convert.ToDouble(value);
-            
+
             Feet = Miles * FEET_IN_MILES;
 
             Console.WriteLine(Miles + " mile(s) = " + Feet + " feet.");
 
-            Console.WriteLine("Please ENTER to return to the menu.");
-            Console.ReadLine();
-            SelectChoice();
+            ExitDecision();
         }
 
         /// <summary>
@@ -109,9 +133,7 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine(Feet + " feet = " + Miles + " mile(s).");
 
-            Console.WriteLine("Please ENTER to return to the menu.");
-            Console.ReadLine();
-            SelectChoice();
+            ExitDecision();
         }
 
         /// <summary>
@@ -123,14 +145,12 @@ namespace ConsoleAppProject.App01
             Console.Write("\nPlease enter the number of miles = ");
             string value = Console.ReadLine();
             Miles = Convert.ToDouble(value);
-            
+
             Metres = Miles * METRES_IN_MILES;
 
             Console.WriteLine(Miles + " mile(s) = " + Metres + " metre(s).");
 
-            Console.WriteLine("Please ENTER to return to the menu.");
-            Console.ReadLine();
-            SelectChoice();
+            ExitDecision();
         }
 
         /// <summary>
@@ -147,9 +167,7 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine(Metres + " metre(s) = " + Miles + " mile(s).");
 
-            Console.WriteLine("Please ENTER to return to the menu.");
-            Console.ReadLine();
-            SelectChoice();
+            ExitDecision();
         }
 
         /// <summary>
@@ -166,9 +184,7 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine(Metres + " metre(s) = " + Feet + " feet.");
 
-            Console.WriteLine("Please ENTER to return to the menu.");
-            Console.ReadLine();
-            SelectChoice();
+            ExitDecision();
         }
 
         /// <summary>
@@ -185,9 +201,7 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine(Feet + " feet = " + Metres + " metre(s).");
 
-            Console.WriteLine("Please ENTER to return to the menu.");
-            Console.ReadLine();
-            SelectChoice();
+            ExitDecision();
         }
     }
 }
