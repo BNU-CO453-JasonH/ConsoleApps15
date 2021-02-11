@@ -98,6 +98,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertMilesToFeet()
         {
+            Console.WriteLine("Miles -> Feet Conversion");
             Console.Write("\nPlease enter the number of miles = ");
             string value = Console.ReadLine();
             Miles = Convert.ToDouble(value);
@@ -115,6 +116,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertFeetToMiles()
         {
+            Console.WriteLine("Feet -> Miles Conversion");
             Console.Write("\nPlease enter the number of feet = ");
             string value = Console.ReadLine();
             Feet = Convert.ToDouble(value);
@@ -132,6 +134,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertMilesToMetres()
         {
+            Console.WriteLine("Miles -> Metres Conversion");
             Console.Write("\nPlease enter the number of miles = ");
             string value = Console.ReadLine();
             Miles = Convert.ToDouble(value);
@@ -149,6 +152,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertMetresToMiles()
         {
+            Console.WriteLine("Metres -> Miles Conversion");
             Console.Write("\nPlease enter the number of metres = ");
             string value = Console.ReadLine();
             Metres = Convert.ToDouble(value);
@@ -166,6 +170,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertMetresToFeet()
         {
+            Console.WriteLine("Metres -> Feet Conversion");
             Console.Write("\nPlease enter the number of metres = ");
             string value = Console.ReadLine();
             Metres = Convert.ToDouble(value);
@@ -183,6 +188,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertFeetToMetres()
         {
+            Console.WriteLine("Feet -> Metres Conversion");
             Console.Write("\nPlease enter the number of feet = ");
             string value = Console.ReadLine();
             Feet = Convert.ToDouble(value);
