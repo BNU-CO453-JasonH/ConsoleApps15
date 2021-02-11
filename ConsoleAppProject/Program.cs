@@ -22,7 +22,7 @@ namespace ConsoleAppProject
 
             // App01 - Distance Converter
             DistanceConverter converter = new DistanceConverter();
-            converter.SelectChoice();
+            converter.ConvertDistance();
         }
     }
 }
