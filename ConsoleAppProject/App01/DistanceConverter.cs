@@ -13,10 +13,15 @@ namespace ConsoleAppProject.App01
     /// </author>
     public class DistanceConverter
     {
-        // Constants
+        // Constants for distance conversion
         public const int FEET_IN_MILES = 5280;
         public const double FEET_IN_METRES = 3.28084;
         public const double METRES_IN_MILES = 1609.34;
+
+        // Constants for distance units
+        public const string MILES = "Miles";
+        public const string FEET = "Feet";
+        public const string METRES = "Metres";
 
         // Properties
         public double Miles { get; set; }
@@ -27,22 +32,23 @@ namespace ConsoleAppProject.App01
 
         // TODO: See week 3 slides and create a ConsoleHelper class.
         /// <summary>
-        /// Prints a heading for the application.
+        /// Prints a heading for the converter, as well as which conversion is taking place.
         /// </summary>
-        public void OutputHeading()
+        /// <param name="prompt">The conversion taking place (e.g. miles -> feet).</param>
+        private void OutputHeading(string prompt)
         {
-            Console.WriteLine("\n-------------------------------------------------------------   ");
-            Console.WriteLine("       Distance Conversion Calculator (Miles, Feet, Metres)      ");
-            Console.WriteLine("                       By Jason Huggins                          ");
-            Console.WriteLine("---------------------------------------------------------------\n");
+            Console.WriteLine("\n--------------------------------------------------------");
+            Console.WriteLine("  Distance Conversion Calculator (Miles, Feet, Metres)    ");
+            Console.WriteLine("                  By Jason Huggins                        ");
+            Console.WriteLine("--------------------------------------------------------\n");
 
-            SelectChoice();
+            Console.WriteLine(prompt);
         }
 
         /// <summary>
         /// Asks the user to select their choices (source and destination distance units for conversion).
         /// </summary>
-        private void SelectChoice()
+        public void SelectChoice()
         {
             Console.Write("\nPlease enter the unit you'd like to convert from " +
                 "('miles', 'feet' or 'metres') > ");
@@ -130,7 +136,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertMilesToFeet()
         {
-            Console.WriteLine("Miles -> Feet Conversion");
+            OutputHeading("Miles -> Feet Conversion");
 
             Miles = InputDistance("Please enter the number of miles = ");
             Feet = Miles * FEET_IN_MILES;
@@ -146,7 +152,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertFeetToMiles()
         {
-            Console.WriteLine("Feet -> Miles Conversion");
+            OutputHeading("Feet -> Miles Conversion");
 
             Feet = InputDistance("Please enter the number of feet = ");
             Miles = Feet / FEET_IN_MILES;
@@ -162,7 +168,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertMilesToMetres()
         {
-            Console.WriteLine("Miles -> Metres Conversion");
+            OutputHeading("Miles -> Metres Conversion");
 
             Miles = InputDistance("Please enter the number of miles = ");
             Metres = Miles * METRES_IN_MILES;
@@ -178,7 +184,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertMetresToMiles()
         {
-            Console.WriteLine("Metres -> Miles Conversion");
+            OutputHeading("Metres -> Miles Conversion");
 
             Metres = InputDistance("Please enter the number of metres = ");
             Miles = Metres / METRES_IN_MILES;
@@ -194,7 +200,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertMetresToFeet()
         {
-            Console.WriteLine("Metres -> Feet Conversion");
+            OutputHeading("Metres -> Feet Conversion");
 
             Metres = InputDistance("Please enter the number of metres = ");
             Feet = Metres * FEET_IN_METRES;
@@ -210,7 +216,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ConvertFeetToMetres()
         {
-            Console.WriteLine("Feet -> Metres Conversion");
+            OutputHeading("Feet -> Metres Conversion");
 
             Feet = InputDistance("Please enter the number of feet = ");
             Metres = Feet / FEET_IN_METRES;
