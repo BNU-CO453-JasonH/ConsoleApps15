@@ -100,16 +100,27 @@ namespace ConsoleAppProject.App01
         }
 
         /// <summary>
+        /// Prompts the user to input a distance to convert from.
+        /// </summary>
+        /// <param name="prompt">The prompt that will be displayed to the user.</param>
+        /// <returns>Their inputted value as a double.</returns>
+        private double InputDistance(string prompt)
+        {
+            Console.Write("\n" + prompt);
+            string value = Console.ReadLine();
+            return Convert.ToDouble(value);
+        }
+
+        /// <summary>
         /// Asks the user to input a distance in miles, which is then converted into feet and the result is 
         /// displayed on-screen.
         /// </summary>
         private void ConvertMilesToFeet()
         {
             Console.WriteLine("Miles -> Feet Conversion");
-            Console.Write("\nPlease enter the number of miles = ");
-            string value = Console.ReadLine();
-            Miles = Convert.ToDouble(value);
-
+            //Console.Write("\nPlease enter the number of miles = ");
+            //string value = Console.ReadLine();
+            Miles = InputDistance("Please enter the number of miles = ");
             Feet = Miles * FEET_IN_MILES;
 
             Console.WriteLine(Miles + " mile(s) = " + Feet + " feet.");
@@ -124,10 +135,9 @@ namespace ConsoleAppProject.App01
         private void ConvertFeetToMiles()
         {
             Console.WriteLine("Feet -> Miles Conversion");
-            Console.Write("\nPlease enter the number of feet = ");
-            string value = Console.ReadLine();
-            Feet = Convert.ToDouble(value);
-
+            //Console.Write("\nPlease enter the number of feet = ");
+            //string value = Console.ReadLine();
+            Feet = InputDistance("Please enter the number of feet = ");
             Miles = Feet / FEET_IN_MILES;
 
             Console.WriteLine(Feet + " feet = " + Miles + " mile(s).");
@@ -142,10 +152,9 @@ namespace ConsoleAppProject.App01
         private void ConvertMilesToMetres()
         {
             Console.WriteLine("Miles -> Metres Conversion");
-            Console.Write("\nPlease enter the number of miles = ");
-            string value = Console.ReadLine();
-            Miles = Convert.ToDouble(value);
-
+            //Console.Write("\nPlease enter the number of miles = ");
+            //string value = Console.ReadLine();
+            Miles = InputDistance("Please enter the number of miles = ");
             Metres = Miles * METRES_IN_MILES;
 
             Console.WriteLine(Miles + " mile(s) = " + Metres + " metre(s).");
@@ -160,10 +169,9 @@ namespace ConsoleAppProject.App01
         private void ConvertMetresToMiles()
         {
             Console.WriteLine("Metres -> Miles Conversion");
-            Console.Write("\nPlease enter the number of metres = ");
-            string value = Console.ReadLine();
-            Metres = Convert.ToDouble(value);
-
+            //Console.Write("\nPlease enter the number of metres = ");
+            //string value = Console.ReadLine();
+            Metres = InputDistance("Please enter the number of metres = ");
             Miles = Metres / METRES_IN_MILES;
 
             Console.WriteLine(Metres + " metre(s) = " + Miles + " mile(s).");
@@ -178,10 +186,9 @@ namespace ConsoleAppProject.App01
         private void ConvertMetresToFeet()
         {
             Console.WriteLine("Metres -> Feet Conversion");
-            Console.Write("\nPlease enter the number of metres = ");
-            string value = Console.ReadLine();
-            Metres = Convert.ToDouble(value);
-
+            //Console.Write("\nPlease enter the number of metres = ");
+            //string value = Console.ReadLine();
+            Metres = InputDistance("Please enter the number of metres = ");
             Feet = Metres * FEET_IN_METRES;
 
             Console.WriteLine(Metres + " metre(s) = " + Feet + " feet.");
@@ -196,10 +203,9 @@ namespace ConsoleAppProject.App01
         private void ConvertFeetToMetres()
         {
             Console.WriteLine("Feet -> Metres Conversion");
-            Console.Write("\nPlease enter the number of feet = ");
-            string value = Console.ReadLine();
-            Feet = Convert.ToDouble(value);
-
+            //Console.Write("\nPlease enter the number of feet = ");
+            //string value = Console.ReadLine();
+            Feet = InputDistance("Please enter the number of feet = ");
             Metres = Feet / FEET_IN_METRES;
 
             Console.WriteLine(Feet + " feet = " + Metres + " metre(s).");
