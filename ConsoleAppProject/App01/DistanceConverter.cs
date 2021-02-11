@@ -4,11 +4,12 @@ namespace ConsoleAppProject.App01
 {
     /// <summary>
     /// This App converts a user-inputted distance in either miles, feet or metres,
-    /// converting it into its equivalent distance in another unit (both units being selected by the user at the start) 
+    /// converting it into its equivalent distance in another unit 
+    /// (both units being selected by the user at the start) 
     /// and displaying the result to the user afterwards.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 10/02/2021)
+    /// Jason Huggins (modified 11/02/2021)
     /// </author>
     public class DistanceConverter
     {
@@ -17,13 +18,14 @@ namespace ConsoleAppProject.App01
         public const double FEET_IN_METRES = 3.28084;
         public const double METRES_IN_MILES = 1609.34;
 
-        // Attributes
+        // Properties
         public double Miles { get; set; }
         public double Feet { get; set; }
         public double Metres { get; set; }
-        string sourceUnit;
-        string destinationUnit;
+        public string SourceUnit { get; set; }
+        public string DestinationUnit { get; set; }
 
+        // TODO: See week 3 slides and create a ConsoleHelper class.
         /// <summary>
         /// Prints a heading for the application.
         /// </summary>
@@ -42,11 +44,15 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void SelectChoice()
         {
-            Console.Write("\nPlease enter the unit you'd like to convert from ('miles', 'feet' or 'metres') > ");
-            sourceUnit = Console.ReadLine();
+            Console.Write("\nPlease enter the unit you'd like to convert from " +
+                "('miles', 'feet' or 'metres') > ");
 
-            Console.Write("\nPlease enter the unit you'd like to convert to ('miles', 'feet' or 'metres') > ");
-            destinationUnit = Console.ReadLine();
+            SourceUnit = Console.ReadLine();
+
+            Console.Write("\nPlease enter the unit you'd like to convert to" +
+                " ('miles', 'feet' or 'metres') > ");
+
+            DestinationUnit = Console.ReadLine();
 
             ExecuteChoice();
         }
@@ -56,31 +62,32 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void ExecuteChoice()
         {
-            if (sourceUnit == "miles" && destinationUnit == "feet")
+            // TODO: Refactor to use enums for units instead (see week 2 slides).
+            if (SourceUnit == "miles" && DestinationUnit == "feet")
             {
                 ConvertMilesToFeet();
             }
-            else if (sourceUnit == "feet" && destinationUnit == "miles")
+            else if (SourceUnit == "feet" && DestinationUnit == "miles")
             {
                 ConvertFeetToMiles();
             }
-            else if (sourceUnit == "miles" && destinationUnit == "metres")
+            else if (SourceUnit == "miles" && DestinationUnit == "metres")
             {
                 ConvertMilesToMetres();
             }
-            else if (sourceUnit == "metres" && destinationUnit == "miles")
+            else if (SourceUnit == "metres" && DestinationUnit == "miles")
             {
                 ConvertMetresToMiles();
             }
-            else if (sourceUnit == "metres" && destinationUnit == "feet")
+            else if (SourceUnit == "metres" && DestinationUnit == "feet")
             {
                 ConvertMetresToFeet();
             }
-            else if (sourceUnit == "feet" && destinationUnit == "metres")
+            else if (SourceUnit == "feet" && DestinationUnit == "metres")
             {
                 ConvertFeetToMetres();
             }
-            else if (sourceUnit == destinationUnit)
+            else if (SourceUnit == DestinationUnit)
             {
                 Console.WriteLine("Both choices are the same, please enter different source and destination units.");
                 SelectChoice();
