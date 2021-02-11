@@ -18,24 +18,19 @@ namespace ConsoleAppProject.App01
         public const double FEET_IN_METRES = 3.28084;
         public const double METRES_IN_MILES = 1609.34;
 
-        // Constants for distance units
-        public const string MILES = "Miles";
-        public const string FEET = "Feet";
-        public const string METRES = "Metres";
-
         // Properties
         public double FromDistance { get; set; }
         public double ToDistance { get; set; }
-        public string FromUnit { get; set; }
-        public string ToUnit { get; set; }
+        public DistanceUnits FromUnit { get; set; }
+        public DistanceUnits ToUnit { get; set; }
 
         /// <summary>
         /// Constructor for the DistanceConverter class.
         /// </summary>
         public DistanceConverter()
         {
-            FromUnit = MILES;
-            ToUnit = FEET;
+            FromUnit = DistanceUnits.Miles;
+            ToUnit = DistanceUnits.Feet;
         }
 
         // TODO: See week 3 slides and create a ConsoleHelper class.
@@ -79,11 +74,11 @@ namespace ConsoleAppProject.App01
         /// </summary>
         /// <param name="prompt">The user's selected choice.</param>
         /// <returns>The execution of the user's choice.</returns>
-        public string SelectUnit(string prompt)
+        public DistanceUnits SelectUnit(string prompt)
         {
             string choice = ShowChoices(prompt);
 
-            string unit = ExecuteChoice(choice);
+            DistanceUnits unit = ExecuteChoice(choice);
             Console.WriteLine($"\t{unit} has been selected.\n");
 
             return unit;
@@ -96,9 +91,9 @@ namespace ConsoleAppProject.App01
         /// <returns>The user's selected choice.</returns>
         private string ShowChoices(string prompt)
         {
-            Console.WriteLine($"\t1. {MILES}");
-            Console.WriteLine($"\t2. {FEET}");
-            Console.WriteLine($"\t3. {METRES}");
+            Console.WriteLine($"\t1. {DistanceUnits.Miles}");
+            Console.WriteLine($"\t2. {DistanceUnits.Feet}");
+            Console.WriteLine($"\t3. {DistanceUnits.Metres}");
 
             Console.Write(prompt);
             string choice = Console.ReadLine();
@@ -110,22 +105,34 @@ namespace ConsoleAppProject.App01
         /// </summary>
         /// <param name="choice">The choice made by the user.</param>
         /// <returns>The unit representing the user's choice.</returns>
-        private string ExecuteChoice(string choice)
+        private DistanceUnits ExecuteChoice(string choice)
         {
-            if (choice == "1")
+            DistanceUnits unit;
+
+            switch (choice)
             {
-                return MILES;
+                case "1":
+                    unit = DistanceUnits.Miles;
+                    break;
+                case "2":
+                    unit = DistanceUnits.Feet;
+                    break;
+                case "3":
+                    unit = DistanceUnits.Metres;
+                    break;
+                default:
+                    unit = DistanceUnits.NoUnit;
+                    break;
             }
-            else if (choice == "2")
+        
+            // TODO: Fix so it asks the user to input their choice again rather than proceeding. 
+            if (unit == DistanceUnits.NoUnit)
             {
-                return FEET;
-            }
-            else if (choice == "3")
-            {
-                return METRES;
+                Console.WriteLine("Invalid choice. Your choice must be in" +
+                    " the range 1-3.");
             }
 
-            return null;
+            return unit;
         }
 
         /// <summary>
@@ -158,27 +165,27 @@ namespace ConsoleAppProject.App01
         /// </summary>
         private void CalculateDistance()
         {
-            if (FromUnit == MILES && ToUnit == FEET)
+            if (FromUnit == DistanceUnits.Miles && ToUnit == DistanceUnits.Feet)
             {
                 ToDistance = FromDistance * FEET_IN_MILES;
             }
-            else if (FromUnit == FEET && ToUnit == MILES)
+            else if (FromUnit == DistanceUnits.Feet && ToUnit == DistanceUnits.Miles)
             {
                 ToDistance = FromDistance / FEET_IN_MILES;
             }
-            else if (FromUnit == MILES && ToUnit == METRES)
+            else if (FromUnit == DistanceUnits.Miles && ToUnit == DistanceUnits.Metres)
             {
                 ToDistance = FromDistance * METRES_IN_MILES;
             }
-            else if (FromUnit == METRES && ToUnit == MILES)
+            else if (FromUnit == DistanceUnits.Metres && ToUnit == DistanceUnits.Miles)
             {
                 ToDistance = FromDistance / METRES_IN_MILES;
             }
-            else if (FromUnit == METRES && ToUnit == FEET)
+            else if (FromUnit == DistanceUnits.Metres && ToUnit == DistanceUnits.Feet)
             {
                 ToDistance = FromDistance * FEET_IN_METRES;
             }
-            else if (FromUnit == FEET && ToUnit == METRES)
+            else if (FromUnit == DistanceUnits.Feet && ToUnit == DistanceUnits.Metres)
             {
                 ToDistance = FromDistance / FEET_IN_METRES;
             }
