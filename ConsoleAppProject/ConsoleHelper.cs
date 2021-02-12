@@ -17,10 +17,10 @@ namespace ConsoleAppProject
         /// <param name="title">The title of the application.</param>
         public static void OutputHeading(string title)
         {
-            Console.WriteLine("\n\t----------------------");
+            Console.WriteLine("\n\t-------------------------------------");
             Console.WriteLine($"\t{title}");
-            Console.WriteLine("\tBy Jason Huggins");
-            Console.WriteLine("\t----------------------\n");
+            Console.WriteLine("\t\tBy Jason Huggins");
+            Console.WriteLine("\t-------------------------------------\n");
         }
 
         /// <summary>

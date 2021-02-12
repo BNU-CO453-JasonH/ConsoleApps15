@@ -54,8 +54,10 @@ namespace ConsoleAppProject.App01
         {
             OutputHeading();
 
-            FromUnit = SelectUnit("\tPlease enter the unit you'd like to convert from > ");
-            ToUnit = SelectUnit("\tPlease enter the unit you'd like to convert to > ");
+            FromUnit = SelectUnit("\tPlease enter the number for " +
+                "the unit you'd like to convert from > ");
+            ToUnit = SelectUnit("\tPlease enter the number for " +
+                "the unit you'd like to convert to > ");
 
             Console.WriteLine($"\n\t{FromUnit} -> {ToUnit} Conversion");
 
@@ -91,13 +93,14 @@ namespace ConsoleAppProject.App01
         /// <returns>The user's selected choice.</returns>
         private string ShowChoices(string prompt)
         {
-            Console.WriteLine($"\t1. {DistanceUnits.Miles}");
-            Console.WriteLine($"\t2. {DistanceUnits.Feet}");
-            Console.WriteLine($"\t3. {DistanceUnits.Metres}");
+            Console.WriteLine("\t" + prompt);
 
-            Console.Write(prompt);
-            string choice = Console.ReadLine();
-            return choice;
+            string[] choices = { $"\t{DistanceUnits.Miles}",
+                                 $"\t{DistanceUnits.Feet}",
+                                 $"\t{DistanceUnits.Metres}"};
+
+            int choice = ConsoleHelper.SelectChoice(choices);
+            return choice.ToString();
         }
 
         /// <summary>
