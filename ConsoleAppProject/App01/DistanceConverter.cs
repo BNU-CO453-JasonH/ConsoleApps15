@@ -49,7 +49,7 @@ namespace ConsoleAppProject.App01
 
             Console.WriteLine($"\n\t{FromUnit} -> {ToUnit} Conversion");
 
-            FromDistance = InputDistance($"Please enter the number of {FromUnit} = ");
+            FromDistance = ConsoleHelper.InputNumber($"\tPlease enter the number of {FromUnit} > ");
 
             CalculateDistance();
 
@@ -124,18 +124,6 @@ namespace ConsoleAppProject.App01
             }
 
             return unit;
-        }
-
-        /// <summary>
-        /// Prompts the user to input a distance to convert from.
-        /// </summary>
-        /// <param name="prompt">The prompt that will be displayed to the user.</param>
-        /// <returns>Their inputted value as a double.</returns>
-        private double InputDistance(string prompt)
-        {
-            Console.Write("\n\t" + prompt);
-            string value = Console.ReadLine();
-            return Convert.ToDouble(value);
         }
 
         /// <summary>
