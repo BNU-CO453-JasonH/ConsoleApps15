@@ -3,24 +3,54 @@
 namespace ConsoleAppProject
 {
     /// <summary>
-    /// This class handles the console input and output for the Apps
-    /// within this project so it remains consistent.
+    /// This is a general purpose class containing methods
+    /// that can be used by other console based classes.
+    /// Methods to input numbers from the user, and ask the
+    /// user to select a choice from a list of choices.
+    /// There are methods for outputting a main heading
+    /// and a title.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 11/02/2021)
+    /// Derek Peacock 2021
+    /// Modified by Jason Huggins (14/02/2021)
     /// </author>
     public static class ConsoleHelper
     {
         /// <summary>
-        /// Prints a heading for each App with its title and author.
+        /// Prints a heading for each App with its title and author
+        /// in green text.
         /// </summary>
-        /// <param name="title">The title of the application.</param>
-        public static void OutputHeading(string title)
+        /// <param name="heading">The title of the application.</param>
+        public static void OutputHeading(string heading)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+
             Console.WriteLine("\n\t-------------------------------------");
-            Console.WriteLine($"\t{title}");
+            Console.WriteLine($"\t{heading}");
             Console.WriteLine("\t\tBy Jason Huggins");
             Console.WriteLine("\t-------------------------------------\n");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        }
+
+        /// <summary>
+        /// Outputs a title in green text with a dashed underline.
+        /// </summary>
+        /// <param name="title">The title to be outputted.</param>
+        public static void OutputTitle(string title)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            Console.WriteLine($"\n\t {title}");
+            Console.Write(" ");
+
+            for (int count = 0; count <= title.Length; count++)
+            {
+                Console.Write("-");
+            }
+
+            Console.WriteLine("\n");
+            Console.ResetColor();
         }
 
         /// <summary>
