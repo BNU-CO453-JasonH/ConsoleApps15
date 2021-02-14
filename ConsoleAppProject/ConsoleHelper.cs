@@ -26,8 +26,8 @@ namespace ConsoleAppProject
             Console.ForegroundColor = ConsoleColor.Green;
 
             Console.WriteLine("\n\t-------------------------------------");
-            Console.WriteLine($"\t{heading}");
-            Console.WriteLine("\t\tBy Jason Huggins");
+            Console.WriteLine($"\t  {heading}");
+            Console.WriteLine("\t\t  By Jason Huggins");
             Console.WriteLine("\t-------------------------------------\n");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -64,7 +64,7 @@ namespace ConsoleAppProject
             foreach (string choice in choices)
             {
                 choiceNo++; // Incremented at the start so it begins at 1.
-                Console.WriteLine($"\n\t{choiceNo}. {choice}");
+                Console.WriteLine($"\t{choiceNo}. {choice}");
             }
         }
 

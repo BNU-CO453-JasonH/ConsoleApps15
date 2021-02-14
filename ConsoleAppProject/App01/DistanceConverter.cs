@@ -9,7 +9,7 @@ namespace ConsoleAppProject.App01
     /// and displaying the result to the user afterwards.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 11/02/2021)
+    /// Jason Huggins (modified 14/02/2021)
     /// </author>
     public class DistanceConverter
     {
@@ -18,7 +18,7 @@ namespace ConsoleAppProject.App01
         public const double FEET_IN_METRES = 3.28084;
         public const double METRES_IN_MILES = 1609.34;
 
-        // Properties
+        // Properties for distance values and units.
         public double FromDistance { get; set; }
         public double ToDistance { get; set; }
         public DistanceUnits FromUnit { get; set; }
@@ -33,18 +33,6 @@ namespace ConsoleAppProject.App01
             ToUnit = DistanceUnits.Feet;
         }
 
-        // TODO: See week 3 slides and create a ConsoleHelper class.
-        /// <summary>
-        /// Prints a heading for the converter with the application's name and developer.
-        /// </summary>
-        private void OutputHeading()
-        {
-            Console.WriteLine("\n\t--------------------------------------------------------");
-            Console.WriteLine("\t  Distance Conversion Calculator (Miles, Feet, Metres)    ");
-            Console.WriteLine("\t                  By Jason Huggins                        ");
-            Console.WriteLine("\t--------------------------------------------------------\n");
-        }
-
         /// <summary>
         /// Asks the user to input a distance, which is then converted into the unit 
         /// they selected at the start, and the result is 
@@ -52,11 +40,11 @@ namespace ConsoleAppProject.App01
         /// </summary>
         public void ConvertDistance()
         {
-            OutputHeading();
+            ConsoleHelper.OutputHeading("Distance Conversion Calculator");
 
-            FromUnit = SelectUnit("\tPlease enter the number for " +
+            FromUnit = SelectUnit("Please enter the number for " +
                 "the unit you'd like to convert from > ");
-            ToUnit = SelectUnit("\tPlease enter the number for " +
+            ToUnit = SelectUnit("Please enter the number for " +
                 "the unit you'd like to convert to > ");
 
             Console.WriteLine($"\n\t{FromUnit} -> {ToUnit} Conversion");
@@ -78,7 +66,7 @@ namespace ConsoleAppProject.App01
         /// <returns>The execution of the user's choice.</returns>
         public DistanceUnits SelectUnit(string prompt)
         {
-            string choice = ShowChoices(prompt);
+            int choice = ShowChoices(prompt);
 
             DistanceUnits unit = ExecuteChoice(choice);
             Console.WriteLine($"\t{unit} has been selected.\n");
@@ -91,7 +79,7 @@ namespace ConsoleAppProject.App01
         /// </summary>
         /// <param name="prompt">Prompts the user to enter a choice for the distance unit.</param>
         /// <returns>The user's selected choice.</returns>
-        private string ShowChoices(string prompt)
+        private int ShowChoices(string prompt)
         {
             Console.WriteLine("\t" + prompt);
 
@@ -100,7 +88,7 @@ namespace ConsoleAppProject.App01
                                  $"\t{DistanceUnits.Metres}"};
 
             int choice = ConsoleHelper.SelectChoice(choices);
-            return choice.ToString();
+            return choice;
         }
 
         /// <summary>
@@ -108,19 +96,19 @@ namespace ConsoleAppProject.App01
         /// </summary>
         /// <param name="choice">The choice made by the user.</param>
         /// <returns>The unit representing the user's choice.</returns>
-        private DistanceUnits ExecuteChoice(string choice)
+        private DistanceUnits ExecuteChoice(int choice)
         {
             DistanceUnits unit;
 
             switch (choice)
             {
-                case "1":
+                case 1:
                     unit = DistanceUnits.Miles;
                     break;
-                case "2":
+                case 2:
                     unit = DistanceUnits.Feet;
                     break;
-                case "3":
+                case 3:
                     unit = DistanceUnits.Metres;
                     break;
                 default:
