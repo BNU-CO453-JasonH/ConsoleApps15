@@ -1,0 +1,25 @@
+﻿@model double
+@using ConsoleAppProject.App02
+@{
+    ViewData["Title"] = "Weight Status";
+}
+
+@{
+    BMICalculator bmi = new BMICalculator();
+    bmi.User_BMI = Model;
+}
+
+<header class="jumbotron">
+    <h1>BMI Health Message</h1>
+    <h2>by Jason Huggins</h2>
+</header>
+<section>
+    <h2>Your BMI</h2>
+    <p class="text-lead">
+        @bmi.DisplayWeightStatus()
+    </p>
+    <h2>Health Risk Message for BAME</h2>
+    <p class="text-info">
+        @bmi.DisplayRiskMessage()
+    </p>
+</section>

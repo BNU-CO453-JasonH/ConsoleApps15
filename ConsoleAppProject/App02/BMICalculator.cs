@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace ConsoleAppProject.App02
 {
@@ -11,7 +12,7 @@ namespace ConsoleAppProject.App02
     /// <author>
     /// Jason Huggins (modified 14/02/2021)
     /// </author>
-    public class BMI
+    public class BMICalculator
     {
         // Constants for W.H.O. weight status (in BMI kg/m2)
         // Maximum thresholds.
@@ -26,15 +27,15 @@ namespace ConsoleAppProject.App02
         // Properties for height and weight in imperial units.
         // Weight = stones (st) and pounds (lb)
         // Height = feet (ft) and inches (in)
-        public double Weight_ST { get; set; }
-        public double Weight_LB { get; set; }
-        public double Height_FT { get; set; }
-        public double Height_IN { get; set; }
+        public double Stones { get; set; }
+        public double Pounds { get; set; }
+        public double Feet { get; set; }
+        public double Inches { get; set; }
 
         // Properties for height and weight in metric units.
-        // Weight = kilograms (kg); height = metres (m)
-        public double Weight_KG { get; set; }
-        public double Height_M { get; set; }
+        // Weight = kilograms (kg); height = centimetres (cm)
+        public double Kilograms { get; set; }
+        public double Centimetres { get; set; }
 
         // Property for user's BMI.
         public double User_BMI { get; set; }
@@ -49,10 +50,8 @@ namespace ConsoleAppProject.App02
 
             SelectUnits();
 
-            Console.WriteLine("\n\tYour BMI is " + Math.Round(User_BMI, 1));
-            Console.WriteLine("\tWeight status: " + DisplayWeightStatus());
-
-            DisplayRiskMessage();
+            Console.WriteLine(DisplayWeightStatus());
+            Console.WriteLine(DisplayRiskMessage());
 
             ExitDecision();
         }
@@ -88,26 +87,32 @@ namespace ConsoleAppProject.App02
         /// Prompts the user to enter their weight and height in imperial units,
         /// then calculates their BMI.
         /// </summary>
-        private void CalculateImperial()
+        public void CalculateImperial()
         {
-            Weight_ST = ConsoleHelper.InputNumber("\n\tPlease enter your weight in stones > ");
-            Weight_LB = ConsoleHelper.InputNumber("\tPlease enter your weight in pounds > ");
-            Height_FT = ConsoleHelper.InputNumber("\n\tPlease enter your height in feet > ");
-            Height_IN = ConsoleHelper.InputNumber("\tPlease enter your height in inches > ");
+            Stones = ConsoleHelper.InputNumber("\n\tPlease enter your weight " +
+                "in stones > ");
+            Pounds = ConsoleHelper.InputNumber("\tPlease enter your weight " +
+                "in pounds > ");
+            Feet = ConsoleHelper.InputNumber("\n\tPlease enter your height " +
+                "in feet > ");
+            Inches = ConsoleHelper.InputNumber("\tPlease enter your height " +
+                "in inches > ");
 
-            User_BMI = Weight_LB * 703 / Math.Pow(Height_IN, 2);
+            User_BMI = Pounds * 703 / Math.Pow(Inches, 2);
         }
 
         /// <summary>
         /// Prompts the user to enter their weight and height in metric units,
         /// then calculates their BMI.
         /// </summary>
-        private void CalculateMetric()
+        public void CalculateMetric()
         {
-            Weight_KG = ConsoleHelper.InputNumber("\n\tPlease enter your weight in kilograms > ");
-            Height_M = ConsoleHelper.InputNumber("\n\tPlease enter your height in metres > ");
+            Kilograms = ConsoleHelper.InputNumber("\n\tPlease enter your weight " +
+                "in kilograms > ");
+            Centimetres = ConsoleHelper.InputNumber("\n\tPlease enter your height " +
+                "in centimetres > ");
 
-            User_BMI = Weight_KG / Math.Pow(Height_M, 2);
+            User_BMI = Kilograms / Math.Pow((Centimetres / 100), 2);
         }
 
         /// <summary>
@@ -115,48 +120,60 @@ namespace ConsoleAppProject.App02
         /// weight status guidelines. 
         /// </summary>
         /// <returns>A string with the user's current weight status.</returns>
-        private string DisplayWeightStatus()
+        public string DisplayWeightStatus()
         {
+            StringBuilder message = new StringBuilder("\n\t");
+
             if (User_BMI < UNDERWEIGHT_MAX)
             {
-                return "Underweight";
+                message.Append($"Your BMI is {User_BMI:0.0}. " +
+                    $"You are underweight.");
             }
             else if ((User_BMI > UNDERWEIGHT_MAX) && (User_BMI <= NORMAL_MAX))
             {
-                return "Normal";
+                message.Append($"Your BMI is {User_BMI:0.0}. " +
+                    $"You are in the normal range.");
             }
             else if ((User_BMI > NORMAL_MAX) && (User_BMI <= OVERWEIGHT_MAX))
             {
-                return "Overweight";
+                message.Append($"Your BMI is {User_BMI:0.0}. " +
+                    $"You are overweight.");
             }
             else if ((User_BMI > OVERWEIGHT_MAX) && (User_BMI <= OBESE_I_MAX))
             {
-                return "Obese Class I";
+                message.Append($"Your BMI is {User_BMI:0.0}. " +
+                    $"You are obese class I.");
             }
             else if ((User_BMI > OBESE_I_MAX) && (User_BMI <= OBESE_III_MIN))
             {
-                return "Obese Class II";
+                message.Append($"Your BMI is {User_BMI:0.0}. " +
+                    $"You are obese class II.");
             }
             else if (User_BMI >= OBESE_III_MIN)
             {
-                return "Obese Class III";
+                message.Append($"Your BMI is {User_BMI:0.0}. " +
+                    $"You are obese class III.");
             }
 
-            return null;
+            return message.ToString();
         }
 
         /// <summary>
         /// Outputs a message regarding Black, Asian and other minority ethnic
         /// groups having a higher health risk. 
         /// </summary>
-        private void DisplayRiskMessage()
+        public string DisplayRiskMessage()
         {
-            Console.WriteLine("\n\tIf you are Black, Asian or in another minority " +
+            StringBuilder message = new StringBuilder("\n\t");
+
+            message.Append("If you are Black, Asian or in another minority " +
                 "ethnic group, you have a higher health risk.");
-            Console.WriteLine("\n\tAdults with a BMI of 23.0 or over " +
+            message.Append("\n\tAdults with a BMI of 23.0 or over " +
                 "are at increased risk.");
-            Console.WriteLine("\tAdults with a BMI of 27.5 or over " +
+            message.Append("\n\tAdults with a BMI of 27.5 or over " +
                 "are at high risk.");
+
+            return message.ToString();
         }
 
         /// <summary>
@@ -165,13 +182,15 @@ namespace ConsoleAppProject.App02
         /// </summary>
         private void ExitDecision()
         {
-            Console.Write("\n\tWould you like to exit? Selecting 'n' will return you to the menu (y/n) > ");
+            Console.Write("\n\tWould you like to exit? Selecting 'n' will return " +
+                "you to the menu (y/n) > ");
 
             string choice = Console.ReadLine();
 
             if (choice == "y")
             {
-                Console.WriteLine("\tThank you for using this calculator. Goodbye for now!");
+                Console.WriteLine("\tThank you for using this calculator. " +
+                    "Goodbye for now!");
                 Environment.Exit(0);
             }
             else if (choice == "n")

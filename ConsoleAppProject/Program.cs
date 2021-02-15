@@ -32,7 +32,7 @@ namespace ConsoleAppProject
                     converter.ConvertDistance();
                     break;
                 case 2:
-                    BMI bmi_calculator = new BMI();
+                    BMICalculator bmi_calculator = new BMICalculator();
                     bmi_calculator.OutputBMI();
                     break;
                 default:

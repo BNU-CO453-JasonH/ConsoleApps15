@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using WebUI.Models;
+using ConsoleAppProject.App02;
 
 namespace WebUI.Controllers
 {
@@ -21,7 +17,43 @@ namespace WebUI.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult BMICalculator()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult BMICalculator(BMICalculator bmi)
+        {
+            if (bmi.Centimetres > 140)
+            {
+                bmi.CalculateMetric();
+            }
+            else if ((bmi.Feet > 4) && (bmi.Stones > 6))
+            {
+                bmi.CalculateImperial();
+            }
+            else
+            {
+                ViewBag.Error = "You have inputted values too small for any adult. " +
+                    "Please try again.";
+                return View();
+            }
+
+            double bmiIndex = bmi.User_BMI;
+
+            // TODO: Ask Derek in the next session to look at this
+            // (not redirecting after clicking Calculate button
+            return RedirectToAction("DisplayWeightStatus", new { bmiIndex });
+        }
+
+        public IActionResult DisplayWeightStatus(double bmiIndex)
+        {
+            return View(bmiIndex);
+        }
+
+        public IActionResult StudentMarks()
         {
             return View();
         }

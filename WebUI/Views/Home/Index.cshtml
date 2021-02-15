@@ -2,7 +2,7 @@
     ViewData["Title"] = "JH Home Page";
 }
 
-<header class="text-center jumbotron">
+<header class="text-center jumbotron justify-content-center">
     <h1 class="display-4">CO453 - Application Programming</h1>
     <h2>by Jason Huggins</h2>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
@@ -10,10 +10,19 @@
 <section>
     <ol class="list-group">
         <li class="list-group-item">
-            <a>Distance Converter</a>
+            <a class="btn btn-success" asp-controller="Home"
+               asp-action="DistanceConverter">App01</a>
+            Distance Converter
         </li>
         <li class="list-group-item">
-            <a>BMI Calculator</a>
+            <a class="btn btn-info" asp-controller="Home"
+               asp-action="BMICalculator">App02</a>
+            BMI Calculator
+        </li>
+        <li class="list-group-item">
+            <a class="btn btn-warning" asp-controller="Home"
+               asp-action="StudentMarks">App03</a>
+            Student Marks
         </li>
     </ol>
 </section>
