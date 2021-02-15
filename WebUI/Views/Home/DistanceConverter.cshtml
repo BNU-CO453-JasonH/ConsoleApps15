@@ -1,9 +1,66 @@
-﻿@{
+﻿@model ConsoleAppProject.App01.DistanceConverter
+@using ConsoleAppProject.App01
+@{
     ViewData["Title"] = "JH Distance Converter";
 }
 
-<header>
-    <h1>DistanceConverter</h1>
+<header class="text-center jumbotron justify-content-center">
+    <h1>App01: Distance Converter</h1>
+    <h2>by Jason Huggins</h2>
+    <p>
+        <br />
+        This app will convert a distance entered in one unit into
+        another unit at the equivalent distance. The available
+        units to choose are miles, feet and metres.
+    </p>
 </header>
+<section>
+    <form method="post">
+        <h2>Convert from:</h2>
+        <p>
+            <label>Unit: </label>
+            <select asp-for="@Model.FromUnit" required
+                    asp-items="@Html.GetEnumSelectList<DistanceUnits>()">
+            </select>
+        </p>
+        <p>
+            @if (Model.FromDistance == 0)
+            {
+                <input type="text" asp-for="@Model.FromDistance" value=""
+                       placeholder="From Distance" required />
+            }
+            else
+            {
+                <input type="text" asp-for="@Model.FromDistance"
+                       placeholder="From Distance" required />
+            }
+        </p>
+
+        <h2>Convert to:</h2>
+        <p>
+            <label>Unit: </label>
+            <select asp-for="@Model.ToUnit" required
+                    asp-items="@Html.GetEnumSelectList<DistanceUnits>()">
+            </select>
+        </p>
+        <p>
+            @if (Model.ToDistance == 0)
+            {
+                <input type="text" asp-for="@Model.ToDistance" value=""
+                       placeholder="To Distance" readonly />
+            }
+            else
+            {
+                <input type="text" asp-for="@Model.ToDistance"
+                       value="@Model.ToDistance.ToString("0.00")"
+                       placeholder="To Distance" readonly />
+            }
+        </p>
+
+        <p>
+            <button class="btn btn-success" type="submit">Calculate</button>
+        </p>
+    </form>
+</section>
 
 

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Models;
+using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
 
 namespace WebUI.Controllers
@@ -12,9 +13,14 @@ namespace WebUI.Controllers
             return View();
         }
 
-        public IActionResult DistanceConverter()
+        public IActionResult DistanceConverter(DistanceConverter converter)
         {
-            return View();
+            if (converter.FromDistance > 0)
+            {
+                converter.CalculateDistance();
+            }
+
+            return View(converter);
         }
 
         [HttpGet]

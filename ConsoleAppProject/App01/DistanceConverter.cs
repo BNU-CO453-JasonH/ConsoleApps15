@@ -142,7 +142,7 @@ namespace ConsoleAppProject.App01
         /// Calculates the distance conversion depending on the units selected
         /// by the user at the start.
         /// </summary>
-        private void CalculateDistance()
+        public void CalculateDistance()
         {
             if (FromUnit == DistanceUnits.Miles && ToUnit == DistanceUnits.Feet)
             {
