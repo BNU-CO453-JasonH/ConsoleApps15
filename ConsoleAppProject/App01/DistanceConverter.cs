@@ -9,7 +9,7 @@ namespace ConsoleAppProject.App01
     /// and displaying the result to the user afterwards.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 14/02/2021)
+    /// Jason Huggins (modified 15/02/2021)
     /// </author>
     public class DistanceConverter
     {
@@ -42,12 +42,10 @@ namespace ConsoleAppProject.App01
         {
             ConsoleHelper.OutputHeading("Distance Conversion Calculator");
 
-            FromUnit = SelectUnit("Please enter the number for " +
-                "the unit you'd like to convert from > ");
-            ToUnit = SelectUnit("Please enter the number for " +
-                "the unit you'd like to convert to > ");
+            FromUnit = SelectUnit("From Unit");
+            ToUnit = SelectUnit("To Unit");
 
-            Console.WriteLine($"\n\t{FromUnit} -> {ToUnit} Conversion");
+            Console.WriteLine($"\t{FromUnit} -> {ToUnit} Conversion");
 
             FromDistance = ConsoleHelper.InputNumber($"\tPlease enter the number of {FromUnit} > ");
 
