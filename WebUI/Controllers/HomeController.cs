@@ -49,8 +49,6 @@ namespace WebUI.Controllers
 
             double bmiIndex = bmi.User_BMI;
 
-            // TODO: Ask Derek in the next session to look at this
-            // (not redirecting after clicking Calculate button
             return RedirectToAction("DisplayWeightStatus", new { bmiIndex });
         }
 

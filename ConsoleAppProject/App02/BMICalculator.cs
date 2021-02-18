@@ -10,7 +10,7 @@ namespace ConsoleAppProject.App02
     /// indicating their weight status according to the W.H.O. guidelines.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 14/02/2021)
+    /// Jason Huggins (modified 18/02/2021)
     /// </author>
     public class BMICalculator
     {
@@ -70,10 +70,12 @@ namespace ConsoleAppProject.App02
 
             if (choice == 1)
             {
+                GetImperialInput();
                 CalculateImperial();
             }
             else if (choice == 2)
             {
+                GetMetricInput();
                 CalculateMetric();
             }
             else
@@ -84,10 +86,10 @@ namespace ConsoleAppProject.App02
         }
 
         /// <summary>
-        /// Prompts the user to enter their weight and height in imperial units,
-        /// then calculates their BMI.
+        /// Prompts the user to enter their weight and height in imperial units
+        /// through the console.
         /// </summary>
-        public void CalculateImperial()
+        public void GetImperialInput()
         {
             Stones = ConsoleHelper.InputNumber("\n\tPlease enter your weight " +
                 "in stones > ");
@@ -97,21 +99,35 @@ namespace ConsoleAppProject.App02
                 "in feet > ");
             Inches = ConsoleHelper.InputNumber("\tPlease enter your height " +
                 "in inches > ");
+        }
 
+        /// <summary>
+        /// Calculates the user's BMI based on the metric units they've
+        /// entered.
+        /// </summary>
+        public void CalculateImperial()
+        { 
             User_BMI = Pounds * 703 / Math.Pow(Inches, 2);
         }
 
         /// <summary>
-        /// Prompts the user to enter their weight and height in metric units,
-        /// then calculates their BMI.
+        /// Prompts the user to input the weight and height in metric units
+        /// through the console.
         /// </summary>
-        public void CalculateMetric()
+        public void GetMetricInput()
         {
             Kilograms = ConsoleHelper.InputNumber("\n\tPlease enter your weight " +
                 "in kilograms > ");
             Centimetres = ConsoleHelper.InputNumber("\n\tPlease enter your height " +
                 "in centimetres > ");
+        }
 
+        /// <summary>
+        /// Calculates the user's BMI based on the metric units they've
+        /// entered.
+        /// </summary>
+        public void CalculateMetric()
+        {
             User_BMI = Kilograms / Math.Pow((Centimetres / 100), 2);
         }
 
