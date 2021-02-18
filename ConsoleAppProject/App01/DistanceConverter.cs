@@ -9,7 +9,7 @@ namespace ConsoleAppProject.App01
     /// and displaying the result to the user afterwards.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 15/02/2021)
+    /// Jason Huggins (modified 18/02/2021)
     /// </author>
     public class DistanceConverter
     {
@@ -114,7 +114,6 @@ namespace ConsoleAppProject.App01
                     break;
             }
         
-            // TODO: Fix so it asks the user to input their choice again rather than proceeding. 
             if (unit == DistanceUnits.NoUnit)
             {
                 Console.WriteLine("Invalid choice. Your choice must be in" +
