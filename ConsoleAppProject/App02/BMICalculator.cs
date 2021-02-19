@@ -10,7 +10,7 @@ namespace ConsoleAppProject.App02
     /// indicating their weight status according to the W.H.O. guidelines.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 18/02/2021)
+    /// Jason Huggins (modified 19/02/2021)
     /// </author>
     public class BMICalculator
     {
@@ -102,12 +102,13 @@ namespace ConsoleAppProject.App02
         }
 
         /// <summary>
-        /// Calculates the user's BMI based on the metric units they've
+        /// Calculates the user's BMI based on the imperial units they've
         /// entered.
         /// </summary>
         public void CalculateImperial()
-        { 
-            User_BMI = Pounds * 703 / Math.Pow(Inches, 2);
+        {
+            double heightInInches = (Feet * 12) + Inches;
+            User_BMI = ((Pounds / heightInInches) / heightInInches) * 703;
         }
 
         /// <summary>
