@@ -92,13 +92,13 @@ namespace ConsoleAppProject.App02
         public void GetImperialInput()
         {
             Stones = ConsoleHelper.InputNumber("\n\tPlease enter your weight " +
-                "in stones > ");
+                "in stones > ", 0, 30);
             Pounds = ConsoleHelper.InputNumber("\tPlease enter your weight " +
-                "in pounds > ");
+                "in pounds > ", 0, 300);
             Feet = ConsoleHelper.InputNumber("\n\tPlease enter your height " +
-                "in feet > ");
+                "in feet > ", 0, 10);
             Inches = ConsoleHelper.InputNumber("\tPlease enter your height " +
-                "in inches > ");
+                "in inches > ", 0, 50);
         }
 
         /// <summary>
@@ -118,9 +118,9 @@ namespace ConsoleAppProject.App02
         public void GetMetricInput()
         {
             Kilograms = ConsoleHelper.InputNumber("\n\tPlease enter your weight " +
-                "in kilograms > ");
+                "in kilograms > ", 0, 150);
             Centimetres = ConsoleHelper.InputNumber("\n\tPlease enter your height " +
-                "in centimetres > ");
+                "in centimetres > ", 0, 300);
         }
 
         /// <summary>
