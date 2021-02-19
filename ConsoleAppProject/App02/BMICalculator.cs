@@ -107,8 +107,9 @@ namespace ConsoleAppProject.App02
         /// </summary>
         public void CalculateImperial()
         {
+            double weightInPounds = (Stones * 14) + Pounds;
             double heightInInches = (Feet * 12) + Inches;
-            User_BMI = ((Pounds / heightInInches) / heightInInches) * 703;
+            User_BMI = ((weightInPounds / heightInInches) / heightInInches) * 703;
         }
 
         /// <summary>
