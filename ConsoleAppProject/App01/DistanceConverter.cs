@@ -9,7 +9,7 @@ namespace ConsoleAppProject.App01
     /// and displaying the result to the user afterwards.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 18/02/2021)
+    /// Jason Huggins (modified 21/02/2021)
     /// </author>
     public class DistanceConverter
     {
@@ -44,6 +44,16 @@ namespace ConsoleAppProject.App01
 
             FromUnit = SelectUnit("From Unit");
             ToUnit = SelectUnit("To Unit");
+
+            /// If the user has selected the From and To units with the same
+            /// choice, an error message will appear and will keep doing so
+            /// until they choose a different To unit.
+            while (ToUnit == FromUnit)
+            {
+                Console.WriteLine("\tThe To unit cannot be the same as " +
+                    "the From unit. Please try again.\n");
+                ToUnit = SelectUnit("To Unit");
+            }
 
             Console.WriteLine($"\t{FromUnit} -> {ToUnit} Conversion");
 
@@ -132,7 +142,7 @@ namespace ConsoleAppProject.App01
         /// <param name="ToUnit">The unit of the distance to be converted to.</param>
         private void OutputDistance()
         {
-            Console.WriteLine($"\t{FromDistance} {FromUnit} = {ToDistance} {ToUnit}");
+            Console.WriteLine($"\t{FromDistance} {FromUnit} = {ToDistance:0.00} {ToUnit}");
         }
 
         /// <summary>
