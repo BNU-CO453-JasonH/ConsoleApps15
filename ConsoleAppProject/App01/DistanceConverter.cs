@@ -134,12 +134,8 @@ namespace ConsoleAppProject.App01
         }
 
         /// <summary>
-        /// Outputs the converted distance to the user.
+        /// Outputs the converted distance to the user to 2 decimal places.
         /// </summary>
-        /// <param name="FromDistance">The distance to be converted from.</param>
-        /// <param name="FromUnit">The unit of the distance to be converted from.</param>
-        /// <param name="ToDistance">The distance to be converted to.</param>
-        /// <param name="ToUnit">The unit of the distance to be converted to.</param>
         private void OutputDistance()
         {
             Console.WriteLine($"\t{FromDistance} {FromUnit} = {ToDistance:0.00} {ToUnit}");
