@@ -64,6 +64,7 @@ namespace ConsoleAppProject.App02
         {
             Console.WriteLine("\tWhich unit type would you like to use?");
 
+            // TODO: Change to enum for units. 
             string[] choices = { "Imperial", "Metric" };
 
             int choice = ConsoleHelper.SelectChoice(choices);
@@ -175,6 +176,8 @@ namespace ConsoleAppProject.App02
 
             return message.ToString();
         }
+
+        // TODO: Add method to display advice info depending on weight status
 
         /// <summary>
         /// Outputs a message regarding Black, Asian and other minority ethnic
