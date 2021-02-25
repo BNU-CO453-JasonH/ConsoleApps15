@@ -1,8 +1,21 @@
 ﻿using System;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
+using ConsoleAppProject.Helpers;
 
 namespace ConsoleAppProject.App02
 {
+    /// <summary>
+    /// The unit types for the BMI calculator.
+    /// </summary>
+    public enum UnitSystems
+    {
+        [Display(Name = "Imperial")]
+        Imperial,
+        [Display(Name = "Metric")]
+        Metric
+    }
+
     /// <summary>
     /// This App calculates the user's Body Mass Index (BMI) by taking their weight
     /// and height in either imperial or metric units. 
@@ -10,7 +23,7 @@ namespace ConsoleAppProject.App02
     /// indicating their weight status according to the W.H.O. guidelines.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 19/02/2021)
+    /// Jason Huggins (modified 25/02/2021)
     /// </author>
     public class BMICalculator
     {
@@ -23,6 +36,8 @@ namespace ConsoleAppProject.App02
         public const double OBESE_II_MAX = 39.9;
         // Minimum threshold.
         public const double OBESE_III_MIN = 40.0;
+
+        public WeightCategories category = WeightCategories.NoCategory;
 
         // Properties for height and weight in imperial units.
         // Weight = stones (st) and pounds (lb)
@@ -64,8 +79,8 @@ namespace ConsoleAppProject.App02
         {
             Console.WriteLine("\tWhich unit type would you like to use?");
 
-            // TODO: Change to enum for units. 
-            string[] choices = { "Imperial", "Metric" };
+            string[] choices = { EnumHelper<UnitSystems>.GetName(UnitSystems.Imperial),
+                EnumHelper<UnitSystems>.GetName(UnitSystems.Metric) };
 
             int choice = ConsoleHelper.SelectChoice(choices);
 
@@ -145,39 +160,33 @@ namespace ConsoleAppProject.App02
 
             if (User_BMI < UNDERWEIGHT_MAX)
             {
-                message.Append($"Your BMI is {User_BMI:0.0}. " +
-                    $"You are underweight.");
+                category = WeightCategories.Underweight;
             }
             else if ((User_BMI > UNDERWEIGHT_MAX) && (User_BMI <= NORMAL_MAX))
             {
-                message.Append($"Your BMI is {User_BMI:0.0}. " +
-                    $"You are in the normal range.");
+                category = WeightCategories.Normal;
             }
             else if ((User_BMI > NORMAL_MAX) && (User_BMI <= OVERWEIGHT_MAX))
             {
-                message.Append($"Your BMI is {User_BMI:0.0}. " +
-                    $"You are overweight.");
+                category = WeightCategories.Overweight;
             }
             else if ((User_BMI > OVERWEIGHT_MAX) && (User_BMI <= OBESE_I_MAX))
             {
-                message.Append($"Your BMI is {User_BMI:0.0}. " +
-                    $"You are obese class I.");
+                category = WeightCategories.ObeseI;
             }
             else if ((User_BMI > OBESE_I_MAX) && (User_BMI <= OBESE_III_MIN))
             {
-                message.Append($"Your BMI is {User_BMI:0.0}. " +
-                    $"You are obese class II.");
+                category = WeightCategories.ObeseII;
             }
             else if (User_BMI >= OBESE_III_MIN)
             {
-                message.Append($"Your BMI is {User_BMI:0.0}. " +
-                    $"You are obese class III.");
+                category = WeightCategories.ObeseIII;
             }
 
+            message.Append($"Your BMI is {User_BMI:0.0}. " +
+                $"You are {category}.");
             return message.ToString();
         }
-
-        // TODO: Add method to display advice info depending on weight status
 
         /// <summary>
         /// Outputs a message regarding Black, Asian and other minority ethnic
