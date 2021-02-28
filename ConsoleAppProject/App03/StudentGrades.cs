@@ -47,6 +47,17 @@ namespace ConsoleAppProject.App03
             Marks = new int[Students.Length];
         }
 
+        // TODO: Write method for user input.
+        public void SelectChoice()
+        {
+            /// 1. Input Marks (method incomplete)
+            /// 2. Output Marks (method incomplete)
+            /// 3. Output Stats (method incomplete)
+            /// 4. Output Grade Profile (method incomplete)
+            /// 5. Exit (method incomplete)
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Prompts the user to input a mark in the range
         /// 0-100 for each student and stores it in the
@@ -102,7 +113,7 @@ namespace ConsoleAppProject.App03
         }
 
         /// <summary>
-        /// Calculates and displays the mean, minimum and
+        /// Calculates the mean, minimum and
         /// maximum marks for all students.
         /// </summary>
         public void CalculateStats()
@@ -127,6 +138,15 @@ namespace ConsoleAppProject.App03
             }
 
             Mean = total / Marks.Length;
+        }
+
+        /// <summary>
+        /// Outputs the mean, minimum and
+        /// maximum marks for all students.
+        /// </summary>
+        public void OutputStats()
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
