@@ -37,11 +37,11 @@ namespace ConsoleAppProject.App03
         public StudentGrades()
         {
             Students = new string[]
-                {
+            {
                 "Aaron", "Jack", "Dave", "Mike",
                 "Lisa", "Sarah", "Ryan", "John",
                 "Jennifer", "Anton", "Isabella"
-                };
+            };
 
             GradeProfile = new int[(int)Grades.A + 1];
             Marks = new int[Students.Length];
@@ -73,15 +73,32 @@ namespace ConsoleAppProject.App03
         /// the Grades enum.
         /// </summary>
         /// <param name="mark">The mark to be converted.</param>
-        /// <returns></returns>
+        /// <returns>The grade based on the given mark.</returns>
         public Grades ConvertToGrade(int mark)
         {
             if (mark >= LowestMark && mark < LowestGradeD)
             {
                 return Grades.F;
             }
+            else if (mark >= LowestGradeD && mark < LowestGradeC)
+            {
+                return Grades.D;
+            }
+            else if (mark >= LowestGradeC && mark < LowestGradeB)
+            {
+                return Grades.C;
+            }
+            else if (mark >= LowestGradeB && mark < LowestGradeA)
+            {
+                return Grades.B;
+            }
+            else if (mark >= LowestGradeA && mark <= HighestMark)
+            {
+                return Grades.A;
+            }
 
-            return Grades.D;
+            // Returns N/A by default.
+            return Grades.N;
         }
 
         /// <summary>
@@ -90,7 +107,26 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void CalculateStats()
         {
-            throw new NotImplementedException();
+            Minimum = Marks[0];
+            Maximum = Marks[0];
+
+            double total = 0;
+
+            foreach (int mark in Marks)
+            {
+                if (mark > Maximum)
+                {
+                    Maximum = mark;
+                }
+                if (mark < Minimum)
+                {
+                    Minimum = mark;
+                }
+
+                total += mark;
+            }
+
+            Mean = total / Marks.Length;
         }
 
         /// <summary>
