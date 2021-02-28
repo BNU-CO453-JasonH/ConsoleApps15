@@ -130,13 +130,44 @@ namespace ConsoleAppProject.App03
         }
 
         /// <summary>
-        /// Calculates and displays the grade profile
-        /// containing the percentage of students
-        /// attaining each grade.
+        /// Calculates the grade profile containing the 
+        /// percentage of students attaining each grade.
         /// </summary>
         public void CalculateGradeProfile()
         {
-            throw new NotImplementedException();
+            // Clears the grade profile before use.
+            for (int i = 0; i < GradeProfile.Length; i++)
+            {
+                GradeProfile[i] = 0;
+            }
+
+            foreach (int mark in Marks)
+            {
+                Grades grade = ConvertToGrade(mark);
+                GradeProfile[(int)grade]++;
+            }
+
+            OutputGradeProfile();
+        }
+
+        /// <summary>
+        /// Displays the grade profile after it has been
+        /// calculated.
+        /// </summary>
+        public void OutputGradeProfile()
+        {
+            Grades grade = Grades.N;
+            Console.WriteLine();
+
+            foreach (int count in GradeProfile)
+            {
+                int percentage = count * 100 / Marks.Length;
+                Console.WriteLine($"\tGrade {grade} \t{percentage}%" +
+                    $" \tCount {count}");
+                grade++;
+            }
+
+            Console.WriteLine();
         }
     }
 }
