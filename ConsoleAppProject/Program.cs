@@ -1,6 +1,7 @@
 ﻿using System;
 using ConsoleAppProject.App01;
 using ConsoleAppProject.App02;
+using ConsoleAppProject.App03;
 
 namespace ConsoleAppProject
 {
@@ -10,7 +11,7 @@ namespace ConsoleAppProject
     /// to start Apps 01 to 05 for CO453 CW1
     /// 
     /// This Project has been modified by:
-    /// Jason Huggins 28/02/2021
+    /// Jason Huggins 01/03/2021
     /// </summary>
     public static class Program
     {
@@ -40,7 +41,8 @@ namespace ConsoleAppProject
                     bmi_calculator.OutputBMI();
                     break;
                 case 3:
-                    // Code to start App03 here
+                    StudentGrades studentGrades = new StudentGrades();
+                    studentGrades.OutputHeading();
                     break;
                 case 4:
                     // Code to start App04 here

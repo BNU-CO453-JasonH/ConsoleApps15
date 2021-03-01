@@ -10,7 +10,7 @@ namespace ConsoleAppProject.App03
     /// grade profiles will also be calculated and displayed. 
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 28/02/2021)
+    /// Jason Huggins (modified 01/03/2021)
     /// </author>
     public class StudentGrades
     {
@@ -40,22 +40,64 @@ namespace ConsoleAppProject.App03
             {
                 "Aaron", "Jack", "Dave", "Mike",
                 "Lisa", "Sarah", "Ryan", "John",
-                "Jennifer", "Anton", "Isabella"
+                "Jan", "Anton", "Nat"
             };
 
             GradeProfile = new int[(int)Grades.A + 1];
             Marks = new int[Students.Length];
         }
 
-        // TODO: Write method for user input.
+        /// <summary>
+        /// Displays a heading of the app including its title
+        /// and author.
+        /// </summary>
+        public void OutputHeading()
+        {
+            ConsoleHelper.OutputHeading("Student Marks Application");
+            SelectChoice();
+        }
+
+        /// <summary>
+        /// Prompts the user to select a choice (1-5) of
+        /// the function they would like to carry out
+        /// in the app.
+        /// </summary>
         public void SelectChoice()
         {
-            /// 1. Input Marks (method incomplete)
-            /// 2. Output Marks (method incomplete)
-            /// 3. Output Stats (method incomplete)
-            /// 4. Output Grade Profile (method incomplete)
-            /// 5. Exit (method incomplete)
-            throw new NotImplementedException();
+            Console.WriteLine("\n\tOption Selection");
+
+            string[] choices =
+            {
+                "Input Marks", "Output Marks", "Output Stats",
+                "Output Grade Profile", "Exit"
+            };
+            int choice = ConsoleHelper.SelectChoice(choices);
+
+            if (choice == 1)
+            {
+                InputMarks();
+            }
+            else if (choice == 2)
+            {
+                OutputMarks();
+            }
+            else if (choice == 3)
+            {
+                CalculateStats();
+            }
+            else if (choice == 4)
+            {
+                CalculateGradeProfile();
+            }
+            else if (choice == 5)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("\tInvalid choice. Please try again.");
+                SelectChoice();
+            }
         }
 
         /// <summary>
@@ -66,7 +108,15 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void InputMarks()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\tPlease enter a mark for each student.");
+
+            for (int i = 0; i < Students.Length; i++)
+            {
+                Marks[i] = (int)ConsoleHelper.InputNumber($"\n\tMark for " +
+                    $"{Students[i]} > ", 0, 100);
+            }
+
+            SelectChoice();
         }
 
         /// <summary>
@@ -75,7 +125,15 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void OutputMarks()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\tName\tMarks\tGrade\n");
+
+            for (int i = 0; i < Students.Length; i++)
+            {
+                Console.WriteLine($"\t{Students[i]}\t{Marks[i]}\t" +
+                    $"{ConvertToGrade(Marks[i])}");
+            }
+
+            SelectChoice();
         }
 
         /// <summary>
@@ -138,6 +196,8 @@ namespace ConsoleAppProject.App03
             }
 
             Mean = total / Marks.Length;
+
+            OutputStats();
         }
 
         /// <summary>
@@ -146,7 +206,12 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void OutputStats()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n\tStatistics\n");
+            Console.WriteLine($"\tMean Mark = {Mean:0.0}");
+            Console.WriteLine($"\tMinimum Mark = {Minimum}");
+            Console.WriteLine($"\tMaximum Mark = {Maximum}");
+
+            SelectChoice();
         }
 
         /// <summary>
@@ -179,6 +244,7 @@ namespace ConsoleAppProject.App03
             Grades grade = Grades.N;
             Console.WriteLine();
 
+            // TODO: Needs fixing as it shows numbers for the grades
             foreach (int count in GradeProfile)
             {
                 int percentage = count * 100 / Marks.Length;
@@ -188,6 +254,7 @@ namespace ConsoleAppProject.App03
             }
 
             Console.WriteLine();
+            SelectChoice();
         }
     }
 }
