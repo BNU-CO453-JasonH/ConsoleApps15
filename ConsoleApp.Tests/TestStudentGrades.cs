@@ -103,6 +103,15 @@ namespace ConsoleApp.Tests
         }
 
         [TestMethod]
+        public void TestCountStudentNo()
+        {
+            int expectedNo = 11;
+            int actualNo = studentGrades.Students.Length;
+
+            Assert.AreEqual(expectedNo, actualNo);
+        }
+
+        [TestMethod]
         public void TestCalculateMean()
         {
             studentGrades.Marks = testMarks;
