@@ -244,8 +244,6 @@ namespace ConsoleAppProject.App03
             Grades grade = Grades.N;
             Console.WriteLine();
 
-            /// TODO: Needs fixing as it shows numbers for the grades
-            ///       (console app only)
             foreach (int count in GradeProfile)
             {
                 int percentage = count * 100 / Marks.Length;
