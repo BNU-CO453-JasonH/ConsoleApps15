@@ -10,7 +10,7 @@ namespace ConsoleAppProject.App03
     /// grade profiles will also be calculated and displayed. 
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 01/03/2021)
+    /// Jason Huggins (modified 04/03/2021)
     /// </author>
     public class StudentGrades
     {
@@ -83,11 +83,11 @@ namespace ConsoleAppProject.App03
             }
             else if (choice == 3)
             {
-                CalculateStats();
+                OutputStats();
             }
             else if (choice == 4)
             {
-                CalculateGradeProfile();
+                OutputGradeProfile();
             }
             else if (choice == 5)
             {
@@ -196,8 +196,6 @@ namespace ConsoleAppProject.App03
             }
 
             Mean = total / Marks.Length;
-
-            OutputStats();
         }
 
         /// <summary>
@@ -206,6 +204,8 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void OutputStats()
         {
+            CalculateStats();
+
             Console.WriteLine("\n\tStatistics\n");
             Console.WriteLine($"\tMean Mark = {Mean:0.0}");
             Console.WriteLine($"\tMinimum Mark = {Minimum}");
@@ -231,8 +231,6 @@ namespace ConsoleAppProject.App03
                 Grades grade = ConvertToGrade(mark);
                 GradeProfile[(int)grade]++;
             }
-
-            OutputGradeProfile();
         }
 
         /// <summary>
@@ -241,10 +239,13 @@ namespace ConsoleAppProject.App03
         /// </summary>
         public void OutputGradeProfile()
         {
+            CalculateGradeProfile();
+
             Grades grade = Grades.N;
             Console.WriteLine();
 
-            // TODO: Needs fixing as it shows numbers for the grades
+            /// TODO: Needs fixing as it shows numbers for the grades
+            ///       (console app only)
             foreach (int count in GradeProfile)
             {
                 int percentage = count * 100 / Marks.Length;
