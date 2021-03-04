@@ -143,11 +143,12 @@ namespace ConsoleApp.Tests
             studentGrades.CalculateGradeProfile();
 
             bool expectedProfile;
-            expectedProfile = ((studentGrades.GradeProfile[0] == 3) &&
-                               (studentGrades.GradeProfile[1] == 1) &&
+            expectedProfile = ((studentGrades.GradeProfile[0] == 0) &&
+                               (studentGrades.GradeProfile[1] == 3) &&
                                (studentGrades.GradeProfile[2] == 1) &&
                                (studentGrades.GradeProfile[3] == 1) &&
-                               (studentGrades.GradeProfile[4] == 4));
+                               (studentGrades.GradeProfile[4] == 1) &&
+                               (studentGrades.GradeProfile[5] == 4));
 
             Assert.IsTrue(expectedProfile);
         }
