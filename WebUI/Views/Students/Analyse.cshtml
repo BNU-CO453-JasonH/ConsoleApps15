@@ -12,48 +12,42 @@
         as well as a percentage of the students attaining each
         grade.
     </p>
-</header>
-@{
-    int first = 0;
-    int secondUpper = 0;
-    int secondLower = 0;
-    int third = 0;
-    int failed = 0;
-    int noGrade = 0;
-    int marks = 0;
+    @{
+        int first = 0;
+        int secondUpper = 0;
+        int secondLower = 0;
+        int third = 0;
+        int failed = 0;
+        int marks = 0;
 
-    foreach (var item in Model.Marks)
-    {
-        if (item >= 70 && item <= 100)
+        foreach (var item in Model.Marks)
         {
-            first++;
+            if (item >= 70 && item <= 100)
+            {
+                first++;
+            }
+            else if (item >= 60 && item < 70)
+            {
+                secondUpper++;
+            }
+            else if (item >= 50 && item < 60)
+            {
+                secondLower++;
+            }
+            else if (item >= 40 && item < 50)
+            {
+                third++;
+            }
+            else if (item >= 0 && item < 40)
+            {
+                failed++;
+            }
         }
-        else if (item >= 60 && item < 70)
-        {
-            secondUpper++;
-        }
-        else if (item >= 50 && item < 60)
-        {
-            secondLower++;
-        }
-        else if (item >= 40 && item < 50)
-        {
-            third++;
-        }
-        else if (item == 0)
-        {
-            noGrade++;
-        }
-        else
-        {
-            failed++;
-        }
+
+        marks = marks / Model.Marks.Count();
     }
-
-    marks = marks / Model.Marks.Count();
-}
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
@@ -65,8 +59,7 @@
           ['Grade B', @secondUpper],
           ['Grade C', @secondLower],
           ['Grade D', @third],
-          ['Failed', @failed],
-          ['No Grade', @noGrade]
+          ['Grade F', @failed],
         ]);
 
         var options = {
@@ -78,7 +71,8 @@
 
         chart.draw(data, options);
       }
-</script>
+    </script>
+</header>
 <section>
     <h2>Statistics</h2>
     <table class="table table-bordered table-hover">
