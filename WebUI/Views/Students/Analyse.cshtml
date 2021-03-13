@@ -12,40 +12,6 @@
         as well as a percentage of the students attaining each
         grade.
     </p>
-    @{
-        int first = 0;
-        int secondUpper = 0;
-        int secondLower = 0;
-        int third = 0;
-        int failed = 0;
-        int marks = 0;
-
-        foreach (var item in Model.Marks)
-        {
-            if (item >= 70 && item <= 100)
-            {
-                first++;
-            }
-            else if (item >= 60 && item < 70)
-            {
-                secondUpper++;
-            }
-            else if (item >= 50 && item < 60)
-            {
-                secondLower++;
-            }
-            else if (item >= 40 && item < 50)
-            {
-                third++;
-            }
-            else if (item >= 0 && item < 40)
-            {
-                failed++;
-            }
-        }
-
-        marks = marks / Model.Marks.Count();
-    }
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
@@ -55,11 +21,11 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Grades', 'No. of students'],
-          ['Grade A', @first],
-          ['Grade B', @secondUpper],
-          ['Grade C', @secondLower],
-          ['Grade D', @third],
-          ['Grade F', @failed],
+          ['Grade A', @Model.GradeProfile[5]],
+          ['Grade B', @Model.GradeProfile[4]],
+          ['Grade C', @Model.GradeProfile[3]],
+          ['Grade D', @Model.GradeProfile[2]],
+          ['Fail',    @Model.GradeProfile[1]],
         ]);
 
         var options = {
@@ -110,8 +76,12 @@
             <tr class="text-center">
                 @foreach (int count in Model.GradeProfile)
                 {
-                    double percent = (double)count / Model.Marks.Length;
-                    <td>@percent.ToString("0.0%")</td>
+                    // Skipping NoGrade in array
+                    if (count > 0)
+                    {
+                        double percent = (double)count / Model.Marks.Length;
+                        <td>@percent.ToString("0.0%")</td>
+                    }
                 }
             </tr>
         </tbody>
