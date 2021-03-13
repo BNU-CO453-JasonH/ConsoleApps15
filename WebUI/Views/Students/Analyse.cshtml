@@ -74,14 +74,12 @@
         </thead>
         <tbody>
             <tr class="text-center">
-                @foreach (int count in Model.GradeProfile)
+                @* NoGrade (index 0) is skipped *@
+                @for (int i = 1; i < Model.GradeProfile.Length; i++)
                 {
-                    // Skipping NoGrade in array
-                    if (count > 0)
-                    {
-                        double percent = (double)count / Model.Marks.Length;
-                        <td>@percent.ToString("0.0%")</td>
-                    }
+                    double percent = (double)Model.GradeProfile[i] 
+                        / Model.Marks.Length;
+                    <td>@percent.ToString("0.0%")</td>
                 }
             </tr>
         </tbody>
