@@ -28,9 +28,9 @@ namespace ConsoleAppProject.App04
             string[] choices = new string[]
             {
                 "Post Message", "Post Image",
-                "Display All Posts (by comments/likes)",
-                "Display All Posts (by date/time)",
-                "Display All Posts (by author)",
+                "Display All Posts",
+                "Display Posts by Date",
+                "Display Posts by Author",
                 "Remove Post", "Add Comment",
                 "Like/Unlike Post", "Quit"
             };
@@ -73,41 +73,116 @@ namespace ConsoleAppProject.App04
             } while (!wantToQuit); 
         }
 
+        /// <summary>
+        /// Prompts the user to input their name.
+        /// </summary>
+        private string InputName()
+        {
+            Console.Write("\tPlease enter your name > ");
+            string author = Console.ReadLine();
+            return author;
+        }
+
+        /// <summary>
+        /// Prompts the user to input a text message which
+        /// will be posted onto their news feed. 
+        /// </summary>
         private void PostMessage()
         {
-            throw new NotImplementedException();
+            ConsoleHelper.OutputTitle("Post a Message");
+            string author = InputName();
+
+            Console.Write("\tPlease enter your message > ");
+            string message = Console.ReadLine();
+
+            MessagePost post = new MessagePost(author, message);
+            news.AddMessagePost(post);
+
+            ConsoleHelper.OutputTitle("Message Posted");
+            post.Display();
         }
 
+        /// <summary>
+        /// Prompts the user to input a photo's filename and 
+        /// caption which will be posted onto their news 
+        /// feed. 
+        /// </summary>
         private void PostImage()
         {
-            throw new NotImplementedException();
+            ConsoleHelper.OutputTitle("Post an Image");
+            string author = InputName();
+
+            Console.Write("\tPlease enter your image's filename > ");
+            string filename = Console.ReadLine();
+
+            Console.Write("\tPlease enter a caption for the image > ");
+            string caption = Console.ReadLine();
+
+            PhotoPost post = new PhotoPost(author, filename, caption);
+            news.AddPhotoPost(post);
+
+            ConsoleHelper.OutputTitle("Message Posted");
+            post.Display();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void DisplayAll()
         {
             news.Display();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void DisplayByDate()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void DisplayByAuthor()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Prompts the user to input the ID of the post
+        /// they would like to remove from their news
+        /// feed.
+        /// </summary>
         private void RemovePost()
         {
-            throw new NotImplementedException();
+            ConsoleHelper.OutputTitle("Removing a Post");
+
+            int id = (int)ConsoleHelper.InputNumber("\tPlease enter "
+                + "the post's ID > ", 1, Post.GetNumberOfPosts());
+            news.RemovePost(id);
         }
 
+        /// <summary>
+        /// Prompts the user to add a comment to a post, first
+        /// asking for the post's ID and then a comment.
+        /// </summary>
         private void AddComment()
         {
-            throw new NotImplementedException();
+            ConsoleHelper.OutputTitle("Adding a Comment");
+
+            int id = (int)ConsoleHelper.InputNumber("\tPlease enter "
+                + "the post's ID > ", 1, Post.GetNumberOfPosts());
+
+            Console.Write("\tPlease enter a comment for this post > ");
+            string comment = Console.ReadLine();
+
+            news.AddComment(id, comment);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void LikePost()
         {
             throw new NotImplementedException();

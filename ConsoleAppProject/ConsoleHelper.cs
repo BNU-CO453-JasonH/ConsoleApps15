@@ -41,7 +41,7 @@ namespace ConsoleAppProject
         {
             Console.ForegroundColor = ConsoleColor.Green;
 
-            Console.WriteLine($"\n\t {title}");
+            Console.WriteLine($"\n{title}");
             Console.Write(" ");
 
             for (int count = 0; count <= title.Length; count++)

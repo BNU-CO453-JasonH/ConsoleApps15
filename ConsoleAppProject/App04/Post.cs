@@ -14,25 +14,37 @@ namespace ConsoleAppProject.App04
     /// </author>
     public class Post
     {
-        // Attributes
-        private int likes;
-        private readonly List<String> comments;
-
         // Properties
+        public int PostID { get; }
         public String Username { get; }
         public DateTime Timestamp { get; }
+
+        // Attributes
+        private static int instances = 0;
+        private int likes;
+        private readonly List<String> comments;
 
         /// <summary>
         /// Constructor initialising values.
         /// </summary>
-        /// <param name="author">The author of the post.</param>
         public Post(string author)
         {
+            instances++;
+            PostID = instances;
+
             this.Username = author;
             Timestamp = DateTime.Now;
 
             likes = 0;
             comments = new List<String>();
+        }
+
+        /// <summary>
+        /// Returns the number of posts.
+        /// </summary>
+        public static int GetNumberOfPosts()
+        {
+            return instances;
         }
 
         /// <summary>
@@ -73,8 +85,9 @@ namespace ConsoleAppProject.App04
         public virtual void Display()
         {
             Console.WriteLine();
+            Console.WriteLine($"\tPost ID: {PostID}");
             Console.WriteLine($"\tAuthor: {Username}");
-            Console.WriteLine($"\tTime Elpased: {FormatElapsedTime(Timestamp)}");
+            Console.WriteLine($"\tTime Elapsed: {FormatElapsedTime(Timestamp)}");
             Console.WriteLine();
 
             if (likes > 0)
@@ -92,7 +105,15 @@ namespace ConsoleAppProject.App04
             }
             else
             {
-                Console.WriteLine($"\t{comments.Count} comment(s). Click here to view.");
+                Console.WriteLine($"\t{comments.Count} comment(s).\n");
+                int commentNo = 0;
+
+                foreach (string comment in comments)
+                {
+                    commentNo++;
+                    Console.WriteLine($"\tComment {commentNo}");
+                    Console.WriteLine($"\t{comment}\n");
+                }
             }
         }
 

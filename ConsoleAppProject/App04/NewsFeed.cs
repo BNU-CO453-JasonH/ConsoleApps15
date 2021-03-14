@@ -60,6 +60,69 @@ namespace ConsoleAppProject.App04
             posts.Add(photo);
         }
 
+        /// <summary>
+        /// Finds a post in the news feed based on a
+        /// given ID.
+        /// </summary>
+        public Post FindPost(int id)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.PostID == id)
+                {
+                    return post;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Removes a post from the news feed based on
+        /// the post's ID.
+        /// </summary>
+        public void RemovePost(int id)
+        {
+            Post post = FindPost(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($"\n\tPost with ID {id} doesn't exist.");
+            }
+            else
+            {
+                Console.WriteLine($"\n\tPost with ID {id} has " +
+                    $"been removed from the news feed.\n");
+                posts.Remove(post);
+                post.Display();
+            }
+        }
+
+        /// <summary>
+        /// Adds a comment to a post with a given ID and comment
+        /// by the user.
+        /// </summary>
+        public void AddComment(int id, string comment)
+        {
+            Post post = FindPost(id);
+
+            if (post == null)
+            {
+                Console.WriteLine($"\n\tPost with ID {id} doesn't exist.");
+            }
+            else if (comment == "")
+            {
+                Console.WriteLine($"\n\tNo comment has been entered.");
+            }
+            else
+            {
+                Console.WriteLine("\n\tComment has been added to post with "
+                    + $"ID {id}\n");
+                post.AddComment(comment);
+                post.Display();
+            }
+        }
+
         ///<summary>
         /// Show the news feed. Currently: print the news feed details to the
         /// terminal. (To do: replace this later with display in web browser.)
