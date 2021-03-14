@@ -33,5 +33,17 @@ namespace ConsoleAppProject.App04
         {
             Message = text;
         }
+
+        /// <summary>
+        /// Overrides the method in the base class and
+        /// displays a message post with the common
+        /// post properties. 
+        /// </summary>
+        public override void Display()
+        {
+            Console.WriteLine($"\tMessage: {Message}");
+
+            base.Display();
+        }
     }
 }

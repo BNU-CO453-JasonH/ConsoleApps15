@@ -20,14 +20,24 @@ namespace ConsoleAppProject.App04
     ///</author> 
     public class NewsFeed
     {
+        public const string AUTHOR = "Jason";
         private readonly List<Post> posts;
 
         ///<summary>
-        /// Construct an empty news feed.
+        /// Construct a news feed with some
+        /// sample posts.
         ///</summary>
         public NewsFeed()
         {
             posts = new List<Post>();
+
+            MessagePost post = new MessagePost(AUTHOR, 
+                "Testing message posts!");
+            AddMessagePost(post);
+
+            PhotoPost photoPost = new PhotoPost(AUTHOR,
+                "Photo1.jpg", "Testing photo posts!");
+            AddPhotoPost(photoPost);
         }
 
         ///<summary>

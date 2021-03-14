@@ -39,5 +39,18 @@ namespace ConsoleAppProject.App04
             this.Filename = filename;
             this.Caption = caption;
         }
+
+        /// <summary>
+        /// Overrides the method in the base class and
+        /// displays a photo post with the common
+        /// post properties. 
+        /// </summary>
+        public override void Display()
+        {
+            Console.WriteLine($"\tFilename: {Filename}");
+            Console.WriteLine($"\tCaption: {Caption}");
+
+            base.Display();
+        }
     }
 }
