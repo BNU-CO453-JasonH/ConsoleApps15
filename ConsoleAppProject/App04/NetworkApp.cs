@@ -126,7 +126,7 @@ namespace ConsoleAppProject.App04
         }
 
         /// <summary>
-        /// 
+        /// Displays all posts in the news feed. 
         /// </summary>
         private void DisplayAll()
         {
@@ -142,11 +142,19 @@ namespace ConsoleAppProject.App04
         }
 
         /// <summary>
-        /// 
+        /// Prompts the user to input an author name and
+        /// the app will search for posts in the news
+        /// feed by that author if it exists.
         /// </summary>
         private void DisplayByAuthor()
         {
-            throw new NotImplementedException();
+            ConsoleHelper.OutputTitle("Display Posts by Author");
+
+            Console.Write("\tPlease enter the author you'd like " +
+                "to search for > ");
+            string author = Console.ReadLine();
+
+            news.DisplayByAuthor(author);
         }
 
         /// <summary>

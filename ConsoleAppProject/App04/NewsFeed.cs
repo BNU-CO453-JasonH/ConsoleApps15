@@ -31,7 +31,7 @@ namespace ConsoleAppProject.App04
         {
             posts = new List<Post>();
 
-            MessagePost post = new MessagePost(AUTHOR, 
+            MessagePost post = new MessagePost(AUTHOR,
                 "Testing message posts!");
             AddMessagePost(post);
 
@@ -64,11 +64,28 @@ namespace ConsoleAppProject.App04
         /// Finds a post in the news feed based on a
         /// given ID.
         /// </summary>
-        public Post FindPost(int id)
+        public Post FindPostById(int id)
         {
             foreach (Post post in posts)
             {
                 if (post.PostID == id)
+                {
+                    return post;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Finds a post in the news feed based on a
+        /// given author name.
+        /// </summary>
+        public Post FindPostByAuthor(string author)
+        {
+            foreach (Post post in posts)
+            {
+                if (post.Username == author)
                 {
                     return post;
                 }
@@ -83,7 +100,7 @@ namespace ConsoleAppProject.App04
         /// </summary>
         public void RemovePost(int id)
         {
-            Post post = FindPost(id);
+            Post post = FindPostById(id);
 
             if (post == null)
             {
@@ -104,7 +121,7 @@ namespace ConsoleAppProject.App04
         /// </summary>
         public void AddComment(int id, string comment)
         {
-            Post post = FindPost(id);
+            Post post = FindPostById(id);
 
             if (post == null)
             {
@@ -134,6 +151,22 @@ namespace ConsoleAppProject.App04
             {
                 post.Display();
                 Console.WriteLine();
+            }
+        }
+
+        /// <summary>
+        /// Shows the news feed with posts filtered to the specific
+        /// author inputted.
+        /// </summary>
+        public void DisplayByAuthor(string author)
+        {
+            // TODO: Need to add else statement if author doesn't exist.
+            foreach (Post post in posts)
+            {
+                if (post == FindPostByAuthor(author))
+                {
+                    post.Display();
+                }
             }
         }
     }

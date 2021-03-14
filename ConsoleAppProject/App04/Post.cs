@@ -16,7 +16,7 @@ namespace ConsoleAppProject.App04
     {
         // Properties
         public int PostID { get; }
-        public String Username { get; }
+        public string Username { get; }
         public DateTime Timestamp { get; }
 
         // Attributes
