@@ -11,14 +11,12 @@ namespace ConsoleAppProject.App04
     /// <author>
     /// Michael Kölling and David J. Barnes
     /// version 0.1
-    /// Modified by Jason Huggins (14/03/2021)
+    /// Modified by Jason Huggins (15/03/2021)
     /// </author>
     public class MessagePost : Post
     {
         // an arbitrarily long, multi-line message
         public String Message { get; }
-
-        public DateTime Timestamp { get; }
 
         /// <summary>
         /// Constructor for objects of class MessagePost.
