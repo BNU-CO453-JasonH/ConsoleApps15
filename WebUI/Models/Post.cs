@@ -10,7 +10,7 @@ namespace WebUI.Models
     /// MessagePost and PhotoPost classes.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 15/03/2021)
+    /// Jason Huggins (modified 16/03/2021)
     /// </author>
     [Serializable]
     public class Post
