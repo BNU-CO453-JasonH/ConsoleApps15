@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebUI.Models.PhotoPost>
+
+@{
+    ViewData["Title"] = "Photos";
+}
+
+<header class="jumbotron">
+    <h1>Photos</h1>
+</header>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Add Photo</a>
+
+    <a class="btn btn-info" asp-action="Index"
+       asp-controller="MessagePosts">View Messages</a>
+
+    <a class="btn btn-outline-info" asp-action="Index"
+       asp-controller="Posts">View All</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PostID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Filename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Caption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Timestamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Likes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.PostID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Caption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Likes)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-success"
+                   asp-route-id="@item.PostID">Edit</a> 
+                <a asp-action="Details" class="btn btn-info"
+                   asp-route-id="@item.PostID">Details</a> 
+                <a asp-action="Delete" class="btn btn-danger"
+                   asp-route-id="@item.PostID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

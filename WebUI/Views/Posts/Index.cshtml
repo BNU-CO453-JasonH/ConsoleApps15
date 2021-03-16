@@ -1,0 +1,115 @@
+﻿@model IEnumerable<WebUI.Models.Post>
+
+@{
+    ViewData["Title"] = "Add Post";
+}
+
+<header class="jumbotron">
+    <h1>Add Post</h1>
+</header>
+
+<p>
+    <a class="btn btn-success" asp-action="Create"
+       asp-controller="MessagePosts">Post New Message</a>
+
+    <a class="btn btn-info" asp-action="Create"
+       asp-controller="PhotoPosts">Post New Photo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Post ID
+            </th>
+            <th>
+                User
+            </th>
+            <th>
+                Message
+            </th>
+            <th>
+                Photo
+            </th>
+            <th>
+                Caption
+            </th>
+            <th>
+                Timestamp
+            </th>
+            <th>
+                Likes
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        MessagePost message = null;
+        PhotoPost photo = null;
+
+        if (item is MessagePost)
+        {
+            message = (MessagePost)item;
+        }
+
+        if (item is PhotoPost)
+        {
+            photo = (PhotoPost)item;
+        }
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @if (message != null)
+                {
+                    <span>@message.Message</span>
+                }
+                else
+                {
+                    <span>None</span>
+                }
+            </td>
+            <td>
+                @if (photo != null)
+                {
+                    <span>@photo.Filename</span>
+                }
+                else
+                {
+                    <span>None</span>
+                }
+            </td>
+            <td>
+                @if (photo != null)
+                {
+                    <span>@photo.Caption</span>
+                }
+                else
+                {
+                    <span>None</span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Likes)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-success"
+                   asp-route-id="@item.PostID">Edit</a>
+                <a asp-action="Details" class="btn btn-info"
+                   asp-route-id="@item.PostID">Details</a>
+                <a asp-action="Delete" class="btn btn-danger"
+                   asp-route-id="@item.PostID">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

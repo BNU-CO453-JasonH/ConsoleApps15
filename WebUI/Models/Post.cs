@@ -21,10 +21,9 @@ namespace WebUI.Models
         [StringLength(20), Required]
         public string Username { get; set; }
 
-        public DateTime Timestamp { get; }
+        public DateTime Timestamp { get; set; }
 
-        // Attributes
-        private int likes;
+        public int Likes { get; set; }
 
         /// <summary>
         /// Constructor initialising values.
@@ -32,7 +31,7 @@ namespace WebUI.Models
         public Post()
         {
             Timestamp = DateTime.Now;
-            likes = 0;
+            Likes = 0;
         }
 
         /// <summary>
@@ -40,7 +39,7 @@ namespace WebUI.Models
         /// </summary>
         public void Like()
         {
-            likes++;
+            Likes++;
         }
 
         ///<summary>
@@ -48,9 +47,9 @@ namespace WebUI.Models
         ///</summary>
         public void Unlike()
         {
-            if (likes > 0)
+            if (Likes > 0)
             {
-                likes--;
+                Likes--;
             }
         }
 
@@ -59,16 +58,13 @@ namespace WebUI.Models
         /// relative to current time, such as "30 seconds ago" or "7 minutes ago".
         /// Currently, only seconds and minutes are used for the string.
         /// </summary>
-        /// <param name="time">
-        ///  The time value to convert (in system milliseconds)
-        /// </param> 
         /// <returns>
         /// A relative time string for the given time
         /// </returns>      
-        private String FormatElapsedTime(DateTime time)
+        public String FormatElapsedTime()
         {
             DateTime current = DateTime.Now;
-            TimeSpan timePast = current - time;
+            TimeSpan timePast = current - Timestamp;
 
             long seconds = (long)timePast.TotalSeconds;
             long minutes = seconds / 60;
