@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WebUI.Models
@@ -10,7 +11,7 @@ namespace WebUI.Models
     /// MessagePost and PhotoPost classes.
     /// </summary>
     /// <author>
-    /// Jason Huggins (modified 16/03/2021)
+    /// Jason Huggins (modified 18/03/2021)
     /// </author>
     [Serializable]
     public class Post
@@ -24,6 +25,8 @@ namespace WebUI.Models
         public DateTime Timestamp { get; set; }
 
         public int Likes { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
 
         /// <summary>
         /// Constructor initialising values.

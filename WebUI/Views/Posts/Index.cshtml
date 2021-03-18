@@ -1,12 +1,19 @@
 ﻿@model IEnumerable<WebUI.Models.Post>
 
 @{
-    ViewData["Title"] = "Add Post";
+    ViewData["Title"] = "All Posts";
 }
 
 <header class="jumbotron">
-    <h1>Add Post</h1>
-
+    <h1>News Feed</h1>
+    <h2>By Jason Huggins</h2>
+    <p>
+        All posts are listed in the news feed below, and you can sort by
+        date and name by clicking on the corresponding column names
+        hyperlinked in blue text. You can also filter posts by name
+        by typing in the search box, as well as adding message and photo
+        posts to the feed.
+    </p>
     <form asp-action="Index" method="get">
         <div class="form-actions no-color">
             <p>
@@ -31,13 +38,13 @@
         <tr>
             <th>
                 <a asp-action="Index" asp-route-sortOrder=
-                   "@ViewData["PostIDSortParm"]>">
+                   "@ViewData["PostIDSortParm"]">
                     @Html.DisplayNameFor(model => model.PostID)
                 </a>
             </th>
             <th>
                 <a asp-action="Index" asp-route-sortOrder=
-                   "@ViewData["NameSortParm"]>">
+                   "@ViewData["NameSortParm"]">
                     @Html.DisplayNameFor(model => model.Username)
                 </a>
             </th>
@@ -52,7 +59,7 @@
             </th>
             <th>
                 <a asp-action="Index" asp-route-sortOrder=
-                   "@ViewData["DateSortParm"]>">
+                   "@ViewData["DateSortParm"]">
                     @Html.DisplayNameFor(model => model.Timestamp)
                 </a>
             </th>
@@ -124,8 +131,18 @@
             <td>
                 <a asp-action="Edit" class="btn btn-success"
                    asp-route-id="@item.PostID">Edit</a>
-                <a asp-action="Details" class="btn btn-info"
-                   asp-route-id="@item.PostID">Details</a>
+                @if (item is MessagePost)
+                {
+                    <a asp-action="Details" class="btn btn-info"
+                       asp-controller="MessagePosts"
+                       asp-route-id="@item.PostID">Details</a>
+                }
+                else if (item is PhotoPost)
+                {
+                    <a asp-action="Details" class="btn btn-info"
+                       asp-controller="PhotoPosts"
+                       asp-route-id="@item.PostID">Details</a>
+                }
                 <a asp-action="Delete" class="btn btn-danger"
                    asp-route-id="@item.PostID">Delete</a>
             </td>
