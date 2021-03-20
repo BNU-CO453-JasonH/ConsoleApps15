@@ -18,7 +18,8 @@
         <div class="form-actions no-color">
             <p>
                 Find by name:
-                <input type="text" name="username" />
+                <input type="text" name="SearchString"
+                       value="@ViewData["CurrentFilter"]" />
                 <input type="submit" value="Search" class="btn btn-info" />
                 <a class="btn btn-secondary" asp-action="Index">Back to Full List</a>
             </p>
@@ -129,22 +130,30 @@
                 @Html.DisplayFor(modelItem => item.Likes)
             </td>
             <td>
-                <a asp-action="Edit" class="btn btn-success"
-                   asp-route-id="@item.PostID">Edit</a>
                 @if (item is MessagePost)
                 {
+                    <a asp-action="Edit" class="btn btn-success"
+                       asp-controller="MessagePosts"
+                       asp-route-id="@item.PostID">Edit</a>
                     <a asp-action="Details" class="btn btn-info"
                        asp-controller="MessagePosts"
                        asp-route-id="@item.PostID">Details</a>
+                    <a asp-action="Delete" class="btn btn-danger"
+                       asp-controller="MessagePosts"
+                       asp-route-id="@item.PostID">Delete</a>
                 }
                 else if (item is PhotoPost)
                 {
+                    <a asp-action="Edit" class="btn btn-success"
+                       asp-controller="PhotoPosts"
+                       asp-route-id="@item.PostID">Edit</a>
                     <a asp-action="Details" class="btn btn-info"
                        asp-controller="PhotoPosts"
                        asp-route-id="@item.PostID">Details</a>
+                    <a asp-action="Delete" class="btn btn-danger"
+                       asp-controller="PhotoPosts"
+                       asp-route-id="@item.PostID">Delete</a>
                 }
-                <a asp-action="Delete" class="btn btn-danger"
-                   asp-route-id="@item.PostID">Delete</a>
             </td>
         </tr>
     }

@@ -57,7 +57,7 @@ namespace WebUI.Controllers
                     posts = posts.OrderByDescending(d => d.Timestamp);
                     break;
                 default:
-                    posts = posts.OrderBy(u => u.Username);
+                    posts = posts.OrderBy(p => p.PostID);
                     break;
             }
 
