@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -34,11 +35,14 @@ namespace WebUI.Controllers
             }
 
             var messagePost = await _context.Messages
+                .Include(m => m.Comments)
                 .FirstOrDefaultAsync(m => m.PostID == id);
             if (messagePost == null)
             {
                 return NotFound();
             }
+
+            HttpContext.Session.SetString("CONTROLLER", "MESSAGE");
 
             return View(messagePost);
         }
@@ -143,6 +147,68 @@ namespace WebUI.Controllers
             _context.Messages.Remove(messagePost);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        public ActionResult Like(int id)
+        {
+            var messagePost = _context.Messages.Find(id);
+
+            if (messagePost == null)
+            {
+                return NotFound();
+            }
+
+            messagePost.Like();
+
+            try
+            {
+                _context.Update(messagePost);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MessagePostExists(messagePost.PostID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToAction("Details", new { id = id });
+        }
+
+        public ActionResult Unlike(int id)
+        {
+            var messagePost = _context.Messages.Find(id);
+
+            if (messagePost == null)
+            {
+                return NotFound();
+            }
+
+            messagePost.Unlike();
+
+            try
+            {
+                _context.Update(messagePost);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MessagePostExists(messagePost.PostID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToAction("Details", new { id = id });
         }
 
         private bool MessagePostExists(int id)
